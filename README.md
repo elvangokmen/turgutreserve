@@ -32,3 +32,4 @@ Form şu an demo uyarısı gösterir. Daha sonra Formspree, Resend veya özel e-
 3. Bu klasörün içindeki TÜM dosya ve klasörleri yükleyin.
 4. Commit changes seçin.
 5. Vercel otomatik yeniden yayınlar.
+Deployment refresh
