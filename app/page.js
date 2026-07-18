@@ -1,219 +1,305 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
+import { useState } from "react";
 
-const copy = {
+const content = {
   en: {
-    nav: ['Overview', 'Location', 'Opportunity', 'Gallery'],
-    request: 'Request Private Brochure',
-    eyebrow: 'MARMARIS · TÜRKİYE',
-    title1: 'A rare piece',
-    title2: 'of the Aegean.',
-    intro: 'A private coastal land opportunity in Turgut, Marmaris — presented for discerning international buyers.',
-    cta: 'Explore the opportunity',
-    confidential: 'Confidential presentation · Qualified enquiries',
+    menu: ["Overview", "Property", "Vision", "Location", "Contact"],
+    heroEyebrow: "TURGUT · MARMARIS · TÜRKİYE",
+    heroTitleA: "A rare piece",
+    heroTitleB: "of Marmaris.",
+    heroText:
+      "A private land opportunity surrounded by pine forest, with direct road access and close proximity to the coast.",
+    request: "Request Private Presentation",
+    scroll: "DISCOVER",
     stats: [
-      ['Turgut', 'Marmaris'],
-      ['Aegean', 'Coastal setting'],
-      ['Private', 'Direct offering'],
-      ['Upon request', 'Investment details']
+      ["2,671.63 m²", "Registered land area"],
+      ["177 / 1", "Ada / parcel"],
+      ["Private", "Direct ownership offering"],
+      ["Approx. 300 m", "Coastal proximity"]
     ],
-    storyEyebrow: 'THE SETTING',
-    storyTitle: 'Where pine-covered hills meet the Aegean.',
-    storyText: 'Turgut is positioned within the natural landscape of the Marmaris peninsula. Turgut Reserve is presented as a singular landholding for buyers seeking privacy, scarcity and long-term optionality.',
-    detailsEyebrow: 'THE OPPORTUNITY',
-    detailsTitle: 'A considered acquisition, presented privately.',
-    detailsText: 'Full property information, title documentation, planning status and location files are shared with qualified buyers following an initial enquiry.',
-    cards: [
-      ['01', 'Private offering', 'Direct communication with the ownership side.'],
-      ['02', 'Coastal location', 'A natural setting within the Marmaris peninsula.'],
-      ['03', 'Due diligence ready', 'Legal and technical files available for review.']
+    overviewTag: "THE OPPORTUNITY",
+    overviewTitle: "Land, location and long-term optionality.",
+    overviewText:
+      "Turgut Reserve is a privately presented landholding in Turgut Village, Marmaris. The property sits within a distinctive natural setting, benefits from asphalt road access and is offered with a conceptual boutique hospitality vision.",
+    feature1: "Asphalt road frontage",
+    feature2: "Electricity and water nearby",
+    feature3: "Forest-edge setting",
+    feature4: "Boutique tourism potential",
+    propertyTag: "THE PROPERTY",
+    propertyTitle: "A singular parcel framed by nature.",
+    propertyText:
+      "The cadastral parcel measures 2,671.63 m². Official planning information currently identifies the wider area within the Datça–Bozburun Special Environmental Protection framework. Any future development remains subject to official approvals and independent legal and technical review.",
+    facts: [
+      ["Location", "Turgut Village, Marmaris"],
+      ["Land", "2,671.63 m²"],
+      ["Parcel", "177 / 1"],
+      ["Title status", "Registered parcel"],
+      ["Access", "Asphalt road"],
+      ["Planning", "Subject to official approvals"]
     ],
-    locationEyebrow: 'LOCATION',
-    locationTitle: 'Turgut, Marmaris',
-    locationText: 'A destination shaped by green hills, quiet bays and the enduring appeal of Türkiye’s southwest coast.',
-    galleryEyebrow: 'VISUAL JOURNAL',
-    galleryTitle: 'The landscape speaks first.',
-    formEyebrow: 'PRIVATE ENQUIRY',
-    formTitle: 'Request the confidential presentation.',
-    formText: 'Share your details and our representative will contact you directly.',
-    fields: ['Full name', 'Email address', 'Phone / WhatsApp', 'Country'],
-    message: 'Message',
-    submit: 'Request brochure',
-    disclaimer: 'Information on this website is introductory and does not constitute a binding offer. All property, planning and legal information is subject to independent verification.',
-    footer: 'TURGUT RESERVE · MARMARIS · TÜRKİYE',
-    whatsapp: 'WhatsApp'
+    visionTag: "ILLUSTRATIVE VISION",
+    visionTitle: "One possible expression of the site.",
+    visionText:
+      "The following images are conceptual studies prepared solely to communicate one possible boutique eco-retreat and wellness scenario. They are not an approved project, construction commitment or guaranteed development right.",
+    locationTag: "LOCATION",
+    locationTitle: "Turgut, on the quieter side of Marmaris.",
+    locationText:
+      "A landscape of forested hills, small bays and low-density tourism destinations on Türkiye’s southwest coast.",
+    contactTag: "PRIVATE ENQUIRY",
+    contactTitle: "Request the confidential investment presentation.",
+    contactText:
+      "Qualified enquiries receive the property summary, location information and available supporting documents directly.",
+    name: "Full name",
+    email: "Email",
+    phone: "Phone / WhatsApp",
+    country: "Country",
+    message: "Message",
+    submit: "Send enquiry",
+    whatsapp: "Contact on WhatsApp",
+    legal:
+      "This website is for introductory marketing purposes only and does not constitute a binding offer, planning confirmation or investment advice. All dimensions, planning matters, distances and development scenarios must be independently verified."
   },
   ar: {
-    nav: ['نظرة عامة', 'الموقع', 'الفرصة', 'الصور'],
-    request: 'اطلب الملف الاستثماري',
-    eyebrow: 'مرمريس · تركيا',
-    title1: 'قطعة نادرة',
-    title2: 'من بحر إيجة.',
-    intro: 'فرصة خاصة لامتلاك أرض ساحلية في تورغوت، مرمريس — مقدمة للمشترين الدوليين الباحثين عن التميز.',
-    cta: 'اكتشف الفرصة',
-    confidential: 'عرض سري · للاستفسارات الجادة',
+    menu: ["نظرة عامة", "العقار", "الرؤية", "الموقع", "التواصل"],
+    heroEyebrow: "تورغوت · مرمريس · تركيا",
+    heroTitleA: "قطعة نادرة",
+    heroTitleB: "من مرمريس.",
+    heroText:
+      "فرصة خاصة لامتلاك أرض تحيط بها غابات الصنوبر، مع وصول مباشر من الطريق وقرب من الساحل.",
+    request: "اطلب العرض الخاص",
+    scroll: "اكتشف",
     stats: [
-      ['تورغوت', 'مرمريس'],
-      ['بحر إيجة', 'موقع ساحلي'],
-      ['عرض خاص', 'تواصل مباشر'],
-      ['عند الطلب', 'تفاصيل الاستثمار']
+      ["2,671.63 م²", "مساحة الأرض المسجلة"],
+      ["177 / 1", "رقم القطعة"],
+      ["عرض خاص", "تواصل مباشر مع المالك"],
+      ["حوالي 300 م", "القرب من الساحل"]
     ],
-    storyEyebrow: 'الموقع الطبيعي',
-    storyTitle: 'حيث تلتقي التلال الخضراء ببحر إيجة.',
-    storyText: 'تقع تورغوت ضمن الطبيعة المميزة لشبه جزيرة مرمريس. تُقدَّم Turgut Reserve كفرصة أرض فريدة للمشترين الباحثين عن الخصوصية والندرة والمرونة الاستثمارية طويلة الأجل.',
-    detailsEyebrow: 'الفرصة',
-    detailsTitle: 'استحواذ مدروس، يُعرض بشكل خاص.',
-    detailsText: 'تتم مشاركة معلومات العقار ووثائق الملكية وحالة التخطيط وملفات الموقع مع المشترين المؤهلين بعد التواصل الأولي.',
-    cards: [
-      ['01', 'عرض خاص', 'تواصل مباشر مع جهة الملكية.'],
-      ['02', 'موقع ساحلي', 'بيئة طبيعية ضمن شبه جزيرة مرمريس.'],
-      ['03', 'جاهز للفحص', 'الملفات القانونية والفنية متاحة للمراجعة.']
+    overviewTag: "الفرصة",
+    overviewTitle: "الأرض والموقع والمرونة طويلة الأجل.",
+    overviewText:
+      "Turgut Reserve أرض معروضة بشكل خاص في قرية تورغوت، مرمريس. تقع ضمن بيئة طبيعية مميزة، وتتمتع بوصول من طريق معبد، ويُقدَّم معها تصور مبدئي لضيافة بوتيكية.",
+    feature1: "واجهة على طريق معبد",
+    feature2: "الكهرباء والمياه بالقرب من الموقع",
+    feature3: "موقع بمحاذاة الغابة",
+    feature4: "إمكانات سياحية بوتيكية",
+    propertyTag: "العقار",
+    propertyTitle: "قطعة واحدة تحتضنها الطبيعة.",
+    propertyText:
+      "تبلغ المساحة المسجلة 2,671.63 م². وتشير المعلومات الرسمية الحالية إلى وجود الموقع ضمن إطار الحماية البيئية الخاص بمنطقة داتشا–بوزبورون. أي تطوير مستقبلي يخضع للموافقات الرسمية والفحص القانوني والفني المستقل.",
+    facts: [
+      ["الموقع", "قرية تورغوت، مرمريس"],
+      ["المساحة", "2,671.63 م²"],
+      ["القطعة", "177 / 1"],
+      ["الوضع", "قطعة مسجلة"],
+      ["الوصول", "طريق معبد"],
+      ["التخطيط", "يخضع للموافقات الرسمية"]
     ],
-    locationEyebrow: 'الموقع',
-    locationTitle: 'تورغوت، مرمريس',
-    locationText: 'وجهة تتميز بالتلال الخضراء والخلجان الهادئة وجاذبية الساحل الجنوبي الغربي لتركيا.',
-    galleryEyebrow: 'المشهد',
-    galleryTitle: 'الطبيعة تتحدث أولاً.',
-    formEyebrow: 'استفسار خاص',
-    formTitle: 'اطلب العرض السري.',
-    formText: 'أرسل بياناتك وسيتواصل معك ممثلنا مباشرة.',
-    fields: ['الاسم الكامل', 'البريد الإلكتروني', 'الهاتف / واتساب', 'الدولة'],
-    message: 'الرسالة',
-    submit: 'اطلب الملف',
-    disclaimer: 'المعلومات الواردة في هذا الموقع تمهيدية ولا تشكل عرضاً ملزماً. تخضع جميع معلومات العقار والتخطيط والوضع القانوني للتحقق المستقل.',
-    footer: 'TURGUT RESERVE · مرمريس · تركيا',
-    whatsapp: 'واتساب'
+    visionTag: "رؤية توضيحية",
+    visionTitle: "تصور واحد ممكن للموقع.",
+    visionText:
+      "الصور التالية دراسات تصورية أُعدت فقط لعرض سيناريو ممكن لمنتجع بيئي بوتيكي. وهي لا تمثل مشروعاً معتمداً أو التزاماً بالبناء أو حق تطوير مضمون.",
+    locationTag: "الموقع",
+    locationTitle: "تورغوت، الجانب الأكثر هدوءاً من مرمريس.",
+    locationText:
+      "منطقة تتشكل من التلال الخضراء والخلجان الصغيرة والوجهات السياحية منخفضة الكثافة على الساحل الجنوبي الغربي لتركيا.",
+    contactTag: "استفسار خاص",
+    contactTitle: "اطلب العرض الاستثماري السري.",
+    contactText:
+      "يتلقى أصحاب الاستفسارات الجادة ملخص العقار ومعلومات الموقع والمستندات المتاحة بشكل مباشر.",
+    name: "الاسم الكامل",
+    email: "البريد الإلكتروني",
+    phone: "الهاتف / واتساب",
+    country: "الدولة",
+    message: "الرسالة",
+    submit: "إرسال الاستفسار",
+    whatsapp: "التواصل عبر واتساب",
+    legal:
+      "هذا الموقع لأغراض التسويق التمهيدي فقط ولا يشكل عرضاً ملزماً أو تأكيداً للتخطيط أو نصيحة استثمارية. يجب التحقق بشكل مستقل من جميع المساحات والمسافات وأمور التخطيط وسيناريوهات التطوير."
   }
 };
 
 export default function Home() {
-  const [lang, setLang] = useState('en');
-  const t = useMemo(() => copy[lang], [lang]);
-  const rtl = lang === 'ar';
+  const [lang, setLang] = useState("en");
+  const t = content[lang];
+  const rtl = lang === "ar";
 
-  const onSubmit = (e) => {
+  function submit(e) {
     e.preventDefault();
-    alert(lang === 'ar'
-      ? 'سيتم ربط النموذج بالبريد الإلكتروني في خطوة الإعداد التالية.'
-      : 'The form will be connected to your email in the next setup step.');
-  };
+    const data = new FormData(e.currentTarget);
+    const subject = encodeURIComponent("Turgut Reserve Private Enquiry");
+    const body = encodeURIComponent(
+      `Name: ${data.get("name")}
+Email: ${data.get("email")}
+Phone: ${data.get("phone")}
+Country: ${data.get("country")}
+
+Message:
+${data.get("message")}`
+    );
+    window.location.href = `mailto:elvangokmenn@gmail.com?subject=${subject}&body=${body}`;
+  }
 
   return (
-    <main dir={rtl ? 'rtl' : 'ltr'}>
-      <header className="nav">
-        <a className="brand" href="#top" aria-label="Turgut Reserve home">
-          <span className="brandMark">TR</span>
-          <span><b>TURGUT</b><i>RESERVE</i></span>
+    <main dir={rtl ? "rtl" : "ltr"}>
+      <header className="header">
+        <a href="#top" className="logo">
+          <span className="logoIcon">TR</span>
+          <span><b>TURGUT</b><small>RESERVE</small></span>
         </a>
+
         <nav>
-          {t.nav.map((item, i) => <a key={item} href={['#overview','#location','#opportunity','#gallery'][i]}>{item}</a>)}
+          {t.menu.map((item, i) => (
+            <a key={item} href={["#overview", "#property", "#vision", "#location", "#contact"][i]}>
+              {item}
+            </a>
+          ))}
         </nav>
-        <div className="navActions">
-          <button className="lang" onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}>{lang === 'en' ? 'AR' : 'EN'}</button>
-          <a className="outline" href="#contact">{t.request}</a>
+
+        <div className="headerActions">
+          <button onClick={() => setLang(lang === "en" ? "ar" : "en")}>
+            {lang === "en" ? "العربية" : "EN"}
+          </button>
+          <a className="headerCta" href="#contact">{t.request}</a>
         </div>
       </header>
 
       <section className="hero" id="top">
-        <div className="heroImage" />
-        <div className="grain" />
+        <video autoPlay muted loop playsInline poster="/parcel-aerial.jpg">
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        <div className="heroShade" />
         <div className="heroContent">
-          <p className="eyebrow light">{t.eyebrow}</p>
-          <h1>{t.title1}<br/><em>{t.title2}</em></h1>
-          <p className="heroIntro">{t.intro}</p>
-          <div className="heroActions">
-            <a className="primary" href="#overview">{t.cta} <span>↘</span></a>
-            <span className="confidential">{t.confidential}</span>
+          <p className="eyebrow pale">{t.heroEyebrow}</p>
+          <h1>{t.heroTitleA}<br/><em>{t.heroTitleB}</em></h1>
+          <p className="heroText">{t.heroText}</p>
+          <a className="goldButton" href="#contact">{t.request}<span>↗</span></a>
+        </div>
+        <a href="#overview" className="scroll">{t.scroll}<span>↓</span></a>
+      </section>
+
+      <section className="stats">
+        {t.stats.map(([number, label]) => (
+          <div key={label}>
+            <strong>{number}</strong>
+            <span>{label}</span>
+          </div>
+        ))}
+      </section>
+
+      <section className="overview" id="overview">
+        <div className="overviewCopy">
+          <p className="eyebrow">{t.overviewTag}</p>
+          <h2>{t.overviewTitle}</h2>
+          <p className="lead">{t.overviewText}</p>
+          <div className="features">
+            {[t.feature1, t.feature2, t.feature3, t.feature4].map((f, i) => (
+              <div key={f}><span>0{i+1}</span><p>{f}</p></div>
+            ))}
           </div>
         </div>
-        <div className="scroll">SCROLL <span>↓</span></div>
-      </section>
-
-      <section className="stats" id="overview">
-        {t.stats.map(([a,b]) => <div key={a}><strong>{a}</strong><span>{b}</span></div>)}
-      </section>
-
-      <section className="story">
-        <div className="storyVisual visualOne"><span>01</span></div>
-        <div className="storyCopy">
-          <p className="eyebrow">{t.storyEyebrow}</p>
-          <h2>{t.storyTitle}</h2>
-          <p>{t.storyText}</p>
-          <div className="signature">Turgut Reserve</div>
+        <div className="overviewImage">
+          <img src="/parcel-aerial.jpg" alt="Aerial view of Turgut Reserve land" />
+          <div className="imageCaption">REGISTERED LAND · TURGUT / MARMARIS</div>
         </div>
       </section>
 
-      <section className="opportunity" id="opportunity">
-        <div className="sectionHead">
-          <p className="eyebrow light">{t.detailsEyebrow}</p>
-          <h2>{t.detailsTitle}</h2>
-          <p>{t.detailsText}</p>
+      <section className="property" id="property">
+        <div className="propertyImage">
+          <img src="/parcel-wide.jpg" alt="Aerial parcel boundary view" />
         </div>
-        <div className="cards">
-          {t.cards.map(([n,title,body]) => (
-            <article key={n}>
-              <span>{n}</span>
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </article>
-          ))}
+        <div className="propertyCopy">
+          <p className="eyebrow pale">{t.propertyTag}</p>
+          <h2>{t.propertyTitle}</h2>
+          <p className="lead lightLead">{t.propertyText}</p>
+          <div className="factGrid">
+            {t.facts.map(([k, v]) => (
+              <div key={k}><span>{k}</span><strong>{v}</strong></div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="vision" id="vision">
+        <div className="visionIntro">
+          <p className="eyebrow">{t.visionTag}</p>
+          <h2>{t.visionTitle}</h2>
+          <p>{t.visionText}</p>
+        </div>
+
+        <div className="visionGrid">
+          <figure className="visionMain">
+            <img src="/vision-master.jpg" alt="Illustrative development vision" />
+            <figcaption>ILLUSTRATIVE MASTER VISION</figcaption>
+          </figure>
+          <figure>
+            <img src="/vision-night.jpg" alt="Illustrative night view" />
+            <figcaption>ILLUSTRATIVE NIGHT VIEW</figcaption>
+          </figure>
+          <figure>
+            <img src="/vision-suite.jpg" alt="Illustrative suite concept" />
+            <figcaption>ILLUSTRATIVE SUITE CONCEPT</figcaption>
+          </figure>
+          <figure>
+            <img src="/vision-interior.jpg" alt="Illustrative interior concept" />
+            <figcaption>ILLUSTRATIVE INTERIOR</figcaption>
+          </figure>
+          <figure>
+            <img src="/vision-plan.jpg" alt="Illustrative suite plan" />
+            <figcaption>ILLUSTRATIVE PLAN</figcaption>
+          </figure>
         </div>
       </section>
 
       <section className="location" id="location">
+        <div className="locationVisual">
+          <img src="/parcel-road.jpg" alt="Road and forest surrounding the property" />
+          <div className="coordinates">36°45'20.1"N<br/>28°06'49.8"E</div>
+        </div>
         <div className="locationCopy">
-          <p className="eyebrow">{t.locationEyebrow}</p>
+          <p className="eyebrow">{t.locationTag}</p>
           <h2>{t.locationTitle}</h2>
-          <p>{t.locationText}</p>
-          <a href="#contact">{t.request} <span>→</span></a>
-        </div>
-        <div className="mapArt">
-          <div className="mapLines" />
-          <div className="pin"><i /><span>TURGUT RESERVE</span></div>
-          <b>36.7° N<br/>28.1° E</b>
-        </div>
-      </section>
-
-      <section className="gallery" id="gallery">
-        <div className="sectionHead darkText">
-          <p className="eyebrow">{t.galleryEyebrow}</p>
-          <h2>{t.galleryTitle}</h2>
-        </div>
-        <div className="galleryGrid">
-          <div className="g1"><span>AEGEAN COAST</span></div>
-          <div className="g2"><span>NATURAL LANDSCAPE</span></div>
-          <div className="g3"><span>PRIVATE SETTING</span></div>
+          <p className="lead">{t.locationText}</p>
+          <a
+            className="textLink"
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.google.com/maps?q=36.755583,28.113833"
+          >
+            OPEN LOCATION <span>↗</span>
+          </a>
         </div>
       </section>
 
       <section className="contact" id="contact">
-        <div className="contactIntro">
-          <p className="eyebrow light">{t.formEyebrow}</p>
-          <h2>{t.formTitle}</h2>
-          <p>{t.formText}</p>
-          <a className="whatsapp" href="https://wa.me/905XXXXXXXXX" target="_blank" rel="noreferrer">
-            <span>◉</span> {t.whatsapp}
+        <div className="contactCopy">
+          <p className="eyebrow pale">{t.contactTag}</p>
+          <h2>{t.contactTitle}</h2>
+          <p>{t.contactText}</p>
+          <a className="whatsapp" href="https://wa.me/905316238737" target="_blank" rel="noreferrer">
+            <span>◉</span>{t.whatsapp}
           </a>
         </div>
-        <form onSubmit={onSubmit}>
-          <div className="formGrid">
-            {t.fields.map((field, i) => (
-              <label key={field}>{field}<input required={i < 3} type={i === 1 ? 'email' : 'text'} /></label>
-            ))}
+
+        <form onSubmit={submit}>
+          <div className="twoCols">
+            <label>{t.name}<input name="name" required /></label>
+            <label>{t.email}<input name="email" type="email" required /></label>
+            <label>{t.phone}<input name="phone" required /></label>
+            <label>{t.country}<input name="country" /></label>
           </div>
-          <label>{t.message}<textarea rows="4" /></label>
-          <button className="primary wide" type="submit">{t.submit} <span>→</span></button>
+          <label>{t.message}<textarea name="message" rows="5" /></label>
+          <button className="goldButton full" type="submit">{t.submit}<span>→</span></button>
         </form>
       </section>
 
       <footer>
-        <div className="brand footerBrand">
-          <span className="brandMark">TR</span>
-          <span><b>TURGUT</b><i>RESERVE</i></span>
+        <div className="logo footerLogo">
+          <span className="logoIcon">TR</span>
+          <span><b>TURGUT</b><small>RESERVE</small></span>
         </div>
-        <p>{t.disclaimer}</p>
-        <small>{t.footer}</small>
+        <p>{t.legal}</p>
+        <small>© 2026 TURGUT RESERVE · MARMARIS · TÜRKİYE</small>
       </footer>
     </main>
   );

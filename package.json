@@ -1,6 +1,6 @@
 {
   "name": "turgutreserve",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,6 +11,5 @@
     "next": "16.2.10",
     "react": "19.1.0",
     "react-dom": "19.1.0"
-  },
-  "devDependencies": {}
+  }
 }
