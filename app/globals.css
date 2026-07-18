@@ -30,11 +30,15 @@ button,input,textarea{font:inherit}
 .headerActions button{background:none;border:0;color:white;cursor:pointer;font-size:11px}
 .headerCta{border:1px solid rgba(255,255,255,.55);padding:13px 17px;font-size:10px;letter-spacing:.09em}
 .hero{position:relative;height:100vh;min-height:720px;color:white;overflow:hidden;display:flex;align-items:flex-end}
-.hero video{position:absolute;inset:0;height:100%;object-fit:cover}
-.heroShade{position:absolute;inset:0;background:
+.heroPoster,.hero video{position:absolute;inset:0;height:100%;width:100%;object-fit:cover}
+.heroPoster{background:url('/hero-poster.jpg') center center/cover no-repeat;transform:scale(1.01);filter:saturate(1.04) contrast(1.03)}
+.hero video{opacity:0;transition:opacity 1.2s ease;object-position:center center;transform:translateZ(0);will-change:opacity}
+.hero.videoReady video{opacity:1}
+.heroTexture{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
+.heroShade{position:absolute;inset:0;z-index:1;background:
 linear-gradient(90deg,rgba(6,18,12,.8),rgba(6,18,12,.18) 62%,rgba(6,18,12,.35)),
 linear-gradient(0deg,rgba(6,18,12,.75),transparent 55%)}
-.heroContent{position:relative;z-index:2;margin:0 0 9vh 7vw;max-width:890px}
+.heroContent{position:relative;z-index:3;margin:0 0 9vh 7vw;max-width:890px}
 .eyebrow{font-size:10px;letter-spacing:.25em;font-weight:600;margin:0 0 25px}
 .pale{color:var(--sand)}
 h1,h2{font-family:"Cormorant Garamond",serif;font-weight:500;line-height:.92;margin:0;letter-spacing:-.04em}
@@ -42,7 +46,7 @@ h1{font-size:clamp(78px,10vw,150px)}
 h1 em{font-weight:500;color:var(--sand)}
 .heroText{max-width:630px;font-size:16px;line-height:1.8;font-weight:300;margin:26px 0 30px}
 .goldButton{display:inline-flex;align-items:center;justify-content:space-between;gap:55px;background:var(--sand);color:#162018;border:0;padding:18px 21px;font-size:11px;letter-spacing:.1em;cursor:pointer}
-.scroll{position:absolute;z-index:2;right:4vw;bottom:7vh;font-size:9px;letter-spacing:.22em;writing-mode:vertical-rl;display:flex;gap:12px;align-items:center}
+.scroll{position:absolute;z-index:3;right:4vw;bottom:7vh;font-size:9px;letter-spacing:.22em;writing-mode:vertical-rl;display:flex;gap:12px;align-items:center}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);padding:36px 5vw;background:#e5ded2;border-bottom:1px solid #c9c0b2}
 .stats>div{padding:0 28px;border-right:1px solid #bfb5a7;display:flex;flex-direction:column;gap:8px}
 .stats>div:last-child{border:0}
@@ -179,4 +183,9 @@ footer{background:#050805}
   .locationVisual{min-height:500px}.locationVisual img{height:500px}
   .twoCols{grid-template-columns:1fr}
   footer{grid-template-columns:1fr;align-items:start}footer>small{text-align:left}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .hero video{display:none}
+  .heroPoster{transform:none}
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const content = {
   en: {
@@ -123,8 +123,19 @@ const content = {
 
 export default function Home() {
   const [lang, setLang] = useState("en");
+  const [videoReady, setVideoReady] = useState(false);
+  const heroVideoRef = useRef(null);
   const t = content[lang];
   const rtl = lang === "ar";
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    const attemptPlay = () => video.play().catch(() => {});
+    attemptPlay();
+    document.addEventListener("visibilitychange", attemptPlay);
+    return () => document.removeEventListener("visibilitychange", attemptPlay);
+  }, []);
 
   function submit(e) {
     e.preventDefault();
@@ -166,10 +177,22 @@ ${data.get("message")}`
         </div>
       </header>
 
-      <section className="hero" id="top">
-        <video autoPlay muted loop playsInline poster="/parcel-aerial.jpg">
-          <source src="/hero.mp4" type="video/mp4" />
+      <section className={`hero ${videoReady ? "videoReady" : ""}`} id="top">
+        <div className="heroPoster" aria-hidden="true" />
+        <video
+          ref={heroVideoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/hero-poster.jpg"
+          onCanPlay={() => setVideoReady(true)}
+          onPlaying={() => setVideoReady(true)}
+        >
+          <source src="/hero-cinematic.mp4" type="video/mp4" />
         </video>
+        <div className="heroTexture" />
         <div className="heroShade" />
         <div className="heroContent">
           <p className="eyebrow pale">{t.heroEyebrow}</p>
