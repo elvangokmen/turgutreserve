@@ -1,13 +1,12 @@
-# Turgut Reserve V2
+# Turgut Reserve V3 — Ultra Premium
 
-## GitHub'a yükleme
-Mevcut repository içindeki `app`, `public`, `package.json` ve `README.md` dosyalarını bu pakettekilerle değiştirin.
+Bu sürümde:
+- Fiyat 50.000.000 TL olarak güncellendi.
+- Renk paleti ultra premium siyah / koyu orman yeşili / antik altın / kırık beyaz oldu.
+- Görsel galeri sadeleştirildi; daha az ve daha güçlü konsept görsel kullanıldı.
+- Fiyat için ayrı premium teklif bandı eklendi.
+- İngilizce ve Arapça içerikler güncellendi.
+- Gerçek arazi görüntüleri ile konsept görseller net biçimde ayrıldı.
 
-## Form
-Form, ziyaretçinin cihazındaki e-posta uygulamasını açar ve mesajı `elvangokmenn@gmail.com` adresine hazırlar.
-
-## WhatsApp
-WhatsApp bağlantısı: +90 531 623 8737
-
-## Önemli
-Konsept görseller sitede açıkça "illustrative" olarak etiketlenmiştir.
+## Yükleme
+GitHub repository içindeki `app`, `public`, `package.json` ve `README.md` içeriklerini bu paketle değiştirin.

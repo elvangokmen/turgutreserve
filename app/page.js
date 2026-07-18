@@ -15,13 +15,13 @@ const content = {
     stats: [
       ["2,671.63 m²", "Registered land area"],
       ["177 / 1", "Ada / parcel"],
-      ["Private", "Direct ownership offering"],
+      ["₺50,000,000", "Asking price"],
       ["Approx. 300 m", "Coastal proximity"]
     ],
     overviewTag: "THE OPPORTUNITY",
     overviewTitle: "Land, location and long-term optionality.",
     overviewText:
-      "Turgut Reserve is a privately presented landholding in Turgut Village, Marmaris. The property sits within a distinctive natural setting, benefits from asphalt road access and is offered with a conceptual boutique hospitality vision.",
+      "Turgut Reserve is a privately presented landholding in Turgut Village, Marmaris. Offered at ₺50,000,000, the property combines a distinctive forest-edge setting, asphalt road access and a carefully developed boutique hospitality vision.",
     feature1: "Asphalt road frontage",
     feature2: "Electricity and water nearby",
     feature3: "Forest-edge setting",
@@ -36,6 +36,7 @@ const content = {
       ["Parcel", "177 / 1"],
       ["Title status", "Registered parcel"],
       ["Access", "Asphalt road"],
+      ["Asking price", "₺50,000,000"],
       ["Planning", "Subject to official approvals"]
     ],
     visionTag: "ILLUSTRATIVE VISION",
@@ -72,13 +73,13 @@ const content = {
     stats: [
       ["2,671.63 م²", "مساحة الأرض المسجلة"],
       ["177 / 1", "رقم القطعة"],
-      ["عرض خاص", "تواصل مباشر مع المالك"],
+      ["₺50,000,000", "السعر المطلوب"],
       ["حوالي 300 م", "القرب من الساحل"]
     ],
     overviewTag: "الفرصة",
     overviewTitle: "الأرض والموقع والمرونة طويلة الأجل.",
     overviewText:
-      "Turgut Reserve أرض معروضة بشكل خاص في قرية تورغوت، مرمريس. تقع ضمن بيئة طبيعية مميزة، وتتمتع بوصول من طريق معبد، ويُقدَّم معها تصور مبدئي لضيافة بوتيكية.",
+      "Turgut Reserve أرض معروضة بشكل خاص في قرية تورغوت، مرمريس، بسعر مطلوب قدره ₺50,000,000. تجمع بين موقع طبيعي بمحاذاة الغابة وطريق معبد ورؤية ضيافة بوتيكية مدروسة.",
     feature1: "واجهة على طريق معبد",
     feature2: "الكهرباء والمياه بالقرب من الموقع",
     feature3: "موقع بمحاذاة الغابة",
@@ -93,6 +94,7 @@ const content = {
       ["القطعة", "177 / 1"],
       ["الوضع", "قطعة مسجلة"],
       ["الوصول", "طريق معبد"],
+      ["السعر المطلوب", "₺50,000,000"],
       ["التخطيط", "يخضع للموافقات الرسمية"]
     ],
     visionTag: "رؤية توضيحية",
@@ -204,6 +206,15 @@ ${data.get("message")}`
         </div>
       </section>
 
+      <section className="priceBand">
+        <div>
+          <span>PRIVATE OFFERING</span>
+          <strong>₺50,000,000</strong>
+        </div>
+        <p>Available to qualified buyers through a private enquiry process.</p>
+        <a href="#contact">REQUEST CONFIDENTIAL DETAILS <span>↗</span></a>
+      </section>
+
       <section className="property" id="property">
         <div className="propertyImage">
           <img src="/parcel-wide.jpg" alt="Aerial parcel boundary view" />
@@ -227,26 +238,18 @@ ${data.get("message")}`
           <p>{t.visionText}</p>
         </div>
 
-        <div className="visionGrid">
-          <figure className="visionMain">
-            <img src="/vision-master.jpg" alt="Illustrative development vision" />
-            <figcaption>ILLUSTRATIVE MASTER VISION</figcaption>
+        <div className="visionGrid premiumVision">
+          <figure className="visionHero">
+            <img src="/vision-master.jpg" alt="Illustrative eco retreat master vision" />
+            <figcaption>ILLUSTRATIVE ECO RETREAT MASTER VISION</figcaption>
+          </figure>
+          <figure className="visionWide">
+            <img src="/vision-night.jpg" alt="Illustrative night ambience" />
+            <figcaption>ILLUSTRATIVE NIGHT AMBIENCE</figcaption>
           </figure>
           <figure>
-            <img src="/vision-night.jpg" alt="Illustrative night view" />
-            <figcaption>ILLUSTRATIVE NIGHT VIEW</figcaption>
-          </figure>
-          <figure>
-            <img src="/vision-suite.jpg" alt="Illustrative suite concept" />
-            <figcaption>ILLUSTRATIVE SUITE CONCEPT</figcaption>
-          </figure>
-          <figure>
-            <img src="/vision-interior.jpg" alt="Illustrative interior concept" />
-            <figcaption>ILLUSTRATIVE INTERIOR</figcaption>
-          </figure>
-          <figure>
-            <img src="/vision-plan.jpg" alt="Illustrative suite plan" />
-            <figcaption>ILLUSTRATIVE PLAN</figcaption>
+            <img src="/vision-suite.jpg" alt="Illustrative private suite concept" />
+            <figcaption>ILLUSTRATIVE PRIVATE SUITE</figcaption>
           </figure>
         </div>
       </section>
