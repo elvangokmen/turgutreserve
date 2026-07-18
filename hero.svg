@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+<defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#7a9a9c"/><stop offset=".55" stop-color="#cbb890"/><stop offset="1" stop-color="#25382b"/></linearGradient><filter id="n"><feTurbulence baseFrequency=".004" numOctaves="4" seed="12"/><feDisplacementMap in="SourceGraphic" scale="80"/></filter></defs>
+<rect width="1600" height="1000" fill="url(#s)"/>
+<path d="M0 490 C220 350 380 410 580 300 C850 155 1040 360 1600 190 L1600 1000 0 1000Z" fill="#20382d"/>
+<path d="M0 590 C260 410 500 540 760 390 C1010 245 1190 470 1600 335 L1600 1000 0 1000Z" fill="#355344"/>
+<path d="M0 700 C290 590 500 660 820 510 C1100 380 1260 620 1600 480 L1600 1000 0 1000Z" fill="#53715d"/>
+<path d="M790 365 C980 325 1120 400 1600 290 L1600 585 C1250 630 1100 510 890 550Z" fill="#6e9ba3" opacity=".9"/>
+<path d="M820 400 C1040 360 1200 425 1600 330" fill="none" stroke="#dbe5df" stroke-width="5" opacity=".45"/>
+</svg>
