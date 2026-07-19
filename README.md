@@ -1,17 +1,14 @@
-# Turgut Reserve V6 — Private Land Offering
+# Turgut Reserve V7 Final Marketing
 
-Bu sürüm arazinin pazarlanmasına göre yeniden kurgulandı.
+Final marketing build:
+- Original public Blob MOV video is used directly without editing, cutting or recompression.
+- One-page brochure/collage visual is intentionally excluded.
+- Actual property drone image and three selected illustrative concept visuals are included without cropping.
+- English and Arabic copy revised for natural investment terminology.
+- WhatsApp: +90 531 623 87 37
+- Email: elvangokmenn@gmail.com
+- Contact: Elvan Gökmen
+- Asking price: ₺50,000,000
+- `node_modules` and `.next` are excluded.
 
-## Kullanılan medya
-- Hero video: Vercel Blob üzerindeki orijinal `.mov` dosyası doğrudan kullanılır.
-- `property-drone.jpg`: gerçek arazi görüntüsü.
-- `master-vision.png`: konsept yerleşim vizyonu.
-- `interior-atmosphere.png`: konsept iç mekân atmosferi.
-
-Görseller yeniden boyutlandırılmadı, sıkıştırılmadı veya kırpılmadı. Sayfada normal `<img>` etiketi ile kendi oranlarında gösterilir.
-
-## Kurulum
-ZIP içindeki `app`, `public`, `package.json` ve `README.md` dosyalarını GitHub reposuna yükleyin.
-
-## Önemli
-WhatsApp bağlantısındaki `https://wa.me/` adresine yayın öncesinde telefon numarası eklenmelidir.
+Upload the contents of this folder to the GitHub repository. Vercel will install dependencies automatically.

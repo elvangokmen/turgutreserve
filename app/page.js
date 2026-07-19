@@ -1,295 +1,235 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const VIDEO_URL =
   "https://1wyaxdj8oaerosqy.public.blob.vercel-storage.com/MARMARIS%20TURGUT%20KO%CC%88YU%CC%88%20177%20ADA%201%20PARSEL%20.mov";
 
-const copy = {
+const WHATSAPP =
+  "https://wa.me/905316238737?text=Hello%2C%20I%20would%20like%20to%20receive%20the%20private%20presentation%20for%20Turgut%20Reserve.";
+
+const COPY = {
   en: {
-    nav: ["Property", "Opportunity", "Vision", "Enquire"],
-    heroEyebrow: "PRIVATE LAND OFFERING · MARMARIS",
-    heroTitle: "TURGUT\nRESERVE",
+    nav: ["Property", "Vision", "Offering", "Contact"],
+    eyebrow: "PRIVATE LAND OFFERING · MARMARIS, TÜRKİYE",
+    heroTitle: "Turgut Reserve",
     heroText:
-      "A privately presented landholding in Turgut Village, shaped by forest, coastline and long-term hospitality potential.",
-    heroCta: "REQUEST PRIVATE DETAILS",
-    discover: "DISCOVER",
-    facts: [
-      ["2,761 m²", "Landholding"],
-      ["₺50,000,000", "Asking price"],
-      ["Approx. 300 m", "To the coast"],
-      ["177 / 1", "Block / parcel"],
-    ],
+      "A privately presented 2,761 m² landholding in Turgut, Marmaris, offered with an illustrative boutique hospitality vision.",
+    heroCta: "Request Private Presentation",
+    priceLabel: "ASKING PRICE",
+    price: "₺50,000,000",
     propertyKicker: "THE PROPERTY",
-    propertyTitle: "A distinctive parcel framed by nature.",
+    propertyTitle: "A distinctive landholding between forest and coast.",
     propertyText:
-      "The offering comprises a privately held 2,761 m² parcel in Turgut, Marmaris. Its elongated road frontage, forest-edge setting and proximity to the coast create a compelling basis for a carefully considered future use.",
-    propertyPoints: [
-      "Private title holding",
-      "Direct asphalt road frontage",
-      "Established forest backdrop",
-      "Approx. 300 m coastal proximity",
+      "The offering concerns the land itself. The outlined development imagery is presented separately as an illustrative vision intended to communicate one possible hospitality direction.",
+    facts: [
+      ["2,761 m²", "Parcel area"],
+      ["Approx. 300 m", "Coastal proximity"],
+      ["Asphalt road", "Direct access"],
+      ["Title documents", "Available upon request"],
     ],
-    imageLabel: "ACTUAL PROPERTY · PARCEL BOUNDARY INDICATED",
-    opportunityKicker: "THE OPPORTUNITY",
-    opportunityTitle: "The value begins with the land.",
-    opportunityText:
-      "The site is marketed first and foremost as a land investment. Its setting, scale and access support a range of future possibilities that may be explored independently by the buyer.",
-    pillars: [
-      ["01", "Private Ownership", "A direct land acquisition presented through a confidential buyer process."],
-      ["02", "Premium Setting", "A rare combination of forest character, road access and coastal proximity."],
-      ["03", "Hospitality Potential", "A suitable foundation for evaluating a low-density, nature-led hospitality concept."],
-      ["04", "Long-Term Value", "A scarce landholding within one of the Marmaris peninsula’s most distinctive areas."],
-    ],
+    actualLabel: "ACTUAL PROPERTY VIEW",
+    actualCaption:
+      "Drone view with an indicative parcel outline. Boundary representation is for presentation purposes; official records remain authoritative.",
     visionKicker: "ILLUSTRATIVE DEVELOPMENT VISION",
-    visionTitle: "One possible expression of the site’s potential.",
+    visionTitle: "A possible boutique nature-retreat direction.",
     visionText:
-      "The following master vision is a conceptual design study prepared to demonstrate how a boutique hospitality experience could be organised on the parcel.",
-    visionNote:
-      "Illustrative concept only. Any future development, use, capacity or construction remains subject to the buyer’s own studies and all applicable planning, zoning, technical and governmental approvals.",
-    atmosphereKicker: "ILLUSTRATIVE DESIGN ATMOSPHERE",
-    atmosphereTitle: "A nature-led guest experience, imagined with restraint.",
-    atmosphereText:
-      "The interior study communicates a possible design language rather than a completed or approved project. Architectural design and implementation services may be quoted separately upon request.",
-    offerKicker: "PRIVATE OFFERING",
-    offerTitle: "₺50,000,000",
-    offerText:
-      "Supporting title documents, location information and selected technical material are available through a private enquiry process.",
-    contactKicker: "PRIVATE ENQUIRIES",
-    contactTitle: "Request the confidential property file.",
+      "The following studies demonstrate a potential design language and spatial approach. They do not represent an approved or completed development.",
+    planLabel: "ILLUSTRATIVE SITE PLANNING STUDY",
+    suiteLabel: "ILLUSTRATIVE SUITE CONCEPT",
+    interiorLabel: "ILLUSTRATIVE INTERIOR ATMOSPHERE",
+    serviceKicker: "OPTIONAL PROJECT DELIVERY",
+    serviceTitle: "Design and implementation can be quoted separately.",
+    serviceText:
+      "Upon request, architectural development, detailed design and implementation services may be proposed under a separate commercial offer. Regulatory, planning and licensing processes remain subject to the relevant authorities and are not guaranteed as part of the land offering.",
+    offeringKicker: "PRIVATE OFFERING",
+    offeringTitle: "Acquire the land. Shape the vision.",
+    offeringText:
+      "Further title, location and technical information can be shared with qualified prospective buyers through a private presentation process.",
+    contactTitle: "Request the private presentation.",
     contactText:
-      "For direct owner communication, title documentation and further information, submit a private enquiry.",
-    contactButton: "CONTACT VIA WHATSAPP",
-    legal:
-      "The property is offered as land. All concept imagery and planning material are illustrative and do not constitute a construction, zoning, licence, permit, revenue or return guarantee. Buyers should complete independent legal, technical and commercial due diligence.",
+      "For confidential details, documentation or a viewing appointment, contact Elvan Gökmen directly.",
+    whatsapp: "WhatsApp",
+    email: "Email",
+    contactName: "Elvan Gökmen",
+    disclaimer:
+      "All concept imagery is illustrative. Development potential, use, design, planning and implementation remain subject to due diligence and applicable official approvals.",
   },
   ar: {
-    nav: ["الأرض", "الفرصة", "الرؤية", "التواصل"],
-    heroEyebrow: "عرض أرض خاص · مرمريس",
-    heroTitle: "TURGUT\nRESERVE",
+    nav: ["العقار", "الرؤية", "العرض", "التواصل"],
+    eyebrow: "عرض خاص لأرض · مرمريس، تركيا",
+    heroTitle: "Turgut Reserve",
     heroText:
-      "أرض معروضة بشكل خاص في قرية تورغوت، تجمع بين الغابة والساحل وإمكانات ضيافة طويلة الأجل.",
-    heroCta: "طلب التفاصيل الخاصة",
-    discover: "اكتشف",
+      "أرض بمساحة 2,761 م² معروضة بشكل خاص في تورغوت، مرمريس، ومرفقة برؤية توضيحية لمشروع ضيافة بوتيكي.",
+    heroCta: "اطلب العرض الخاص",
+    priceLabel: "السعر المطلوب",
+    price: "₺50,000,000",
+    propertyKicker: "العقار",
+    propertyTitle: "أرض مميزة بين الغابة والساحل.",
+    propertyText:
+      "موضوع العرض هو الأرض نفسها. أما صور التطوير فتعرض بشكل منفصل كرؤية توضيحية لإبراز أحد الاتجاهات المحتملة لمشروع ضيافة.",
     facts: [
       ["2,761 م²", "مساحة الأرض"],
-      ["₺50,000,000", "السعر المطلوب"],
-      ["حوالي 300 م", "إلى الساحل"],
-      ["177 / 1", "البلوك / القطعة"],
+      ["حوالي 300 م", "القرب من الساحل"],
+      ["طريق معبد", "وصول مباشر"],
+      ["وثائق الملكية", "متاحة عند الطلب"],
     ],
-    propertyKicker: "الأرض",
-    propertyTitle: "قطعة مميزة تحيط بها الطبيعة.",
-    propertyText:
-      "يشمل العرض قطعة أرض خاصة بمساحة 2,761 م² في تورغوت، مرمريس. واجهتها الممتدة على الطريق وموقعها بمحاذاة الغابة وقربها من الساحل تمنحها أساساً مميزاً للاستخدام المستقبلي المدروس.",
-    propertyPoints: [
-      "ملكية خاصة مباشرة",
-      "واجهة على طريق أسفلتي",
-      "خلفية غابية طبيعية",
-      "حوالي 300 م من الساحل",
-    ],
-    imageLabel: "صورة فعلية للأرض · حدود القطعة موضحة",
-    opportunityKicker: "الفرصة",
-    opportunityTitle: "القيمة تبدأ من الأرض.",
-    opportunityText:
-      "يتم تسويق الموقع أولاً كاستثمار أرضي. ويمكن للمشتري دراسة خيارات الاستخدام المستقبلية بشكل مستقل وفقاً للأنظمة والموافقات المعمول بها.",
-    pillars: [
-      ["01", "ملكية خاصة", "استحواذ مباشر على الأرض من خلال عملية تواصل خاصة وسرية."],
-      ["02", "موقع مميز", "مزيج نادر من الطبيعة والوصول المباشر والقرب من الساحل."],
-      ["03", "إمكانات ضيافة", "أساس مناسب لدراسة مفهوم ضيافة منخفض الكثافة ومتصل بالطبيعة."],
-      ["04", "قيمة طويلة الأجل", "ملكية نادرة ضمن إحدى أكثر مناطق شبه جزيرة مرمريس تميزاً."],
-    ],
+    actualLabel: "صورة فعلية للعقار",
+    actualCaption:
+      "صورة جوية مع تحديد إرشادي لحدود القطعة. يبقى المرجع الرسمي هو السجلات والوثائق المعتمدة.",
     visionKicker: "رؤية تطوير توضيحية",
-    visionTitle: "تصور واحد محتمل لإمكانات الموقع.",
+    visionTitle: "تصور محتمل لوجهة بوتيكية وسط الطبيعة.",
     visionText:
-      "الرؤية التالية دراسة تصميمية مفاهيمية توضح كيف يمكن تنظيم تجربة ضيافة بوتيكية على قطعة الأرض.",
-    visionNote:
-      "تصور توضيحي فقط. أي تطوير أو استخدام أو سعة أو بناء مستقبلي يخضع لدراسات المشتري وجميع موافقات التخطيط والتنظيم والجهات المختصة.",
-    atmosphereKicker: "أجواء تصميم توضيحية",
-    atmosphereTitle: "تجربة ضيف مستوحاة من الطبيعة وبتصميم هادئ.",
-    atmosphereText:
-      "تعكس الدراسة الداخلية لغة تصميم محتملة وليست مشروعاً مكتملًا أو معتمداً. يمكن تقديم عرض منفصل لخدمات التصميم والتنفيذ عند الطلب.",
-    offerKicker: "عرض خاص",
-    offerTitle: "₺50,000,000",
-    offerText:
-      "تتوفر مستندات الملكية ومعلومات الموقع وبعض المواد الفنية من خلال تواصل خاص.",
-    contactKicker: "استفسارات خاصة",
-    contactTitle: "اطلب ملف الأرض السري.",
+      "تعرض الدراسات التالية لغة تصميم وتوزيعاً مكانياً محتملاً، ولا تمثل مشروعاً معتمداً أو منفذاً.",
+    planLabel: "دراسة تخطيط موقع توضيحية",
+    suiteLabel: "تصور توضيحي للجناح",
+    interiorLabel: "أجواء داخلية توضيحية",
+    serviceKicker: "خدمات تنفيذ اختيارية",
+    serviceTitle: "يمكن تقديم عرض منفصل للتصميم والتنفيذ.",
+    serviceText:
+      "عند الطلب، يمكن تقديم خدمات التطوير المعماري والتصميم التفصيلي والتنفيذ ضمن عرض تجاري مستقل. وتبقى إجراءات التخطيط والتراخيص والموافقات خاضعة للجهات الرسمية المختصة ولا تشكل ضماناً ضمن عرض الأرض.",
+    offeringKicker: "عرض خاص",
+    offeringTitle: "امتلك الأرض وصِغ الرؤية.",
+    offeringText:
+      "يمكن مشاركة وثائق الملكية والموقع والمعلومات الفنية مع المشترين الجادين ضمن عرض خاص.",
+    contactTitle: "اطلب الملف الخاص بالعقار.",
     contactText:
-      "للتواصل المباشر مع المالك والحصول على المستندات والمعلومات الإضافية، أرسل استفساراً خاصاً.",
-    contactButton: "التواصل عبر واتساب",
-    legal:
-      "العرض يتعلق بالأرض. جميع الصور والمخططات المفاهيمية توضيحية ولا تمثل ضماناً للبناء أو التنظيم أو الترخيص أو الدخل أو العائد. يجب على المشتري إجراء الفحص القانوني والفني والتجاري المستقل.",
+      "للحصول على التفاصيل والوثائق أو ترتيب زيارة، تواصل مباشرة مع إلفان غوكمن.",
+    whatsapp: "واتساب",
+    email: "البريد الإلكتروني",
+    contactName: "إلفان غوكمن",
+    disclaimer:
+      "جميع الصور المفاهيمية توضيحية. تخضع إمكانات التطوير والاستخدام والتصميم والتنفيذ للدراسة والموافقات الرسمية المعمول بها.",
   },
 };
 
-function Header({ lang, setLang, open, setOpen, t }) {
-  return (
-    <header className="header">
-      <a className="brand" href="#top" aria-label="Turgut Reserve home">
-        <span className="monogram">TR</span>
-        <span className="brandWords">
-          <strong>TURGUT RESERVE</strong>
-          <small>PRIVATE LAND OFFERING</small>
-        </span>
-      </a>
-
-      <nav className={open ? "nav open" : "nav"}>
-        {t.nav.map((item, index) => (
-          <a
-            key={item}
-            href={["#property", "#opportunity", "#vision", "#contact"][index]}
-            onClick={() => setOpen(false)}
-          >
-            {item}
-          </a>
-        ))}
-      </nav>
-
-      <div className="headerActions">
-        <button className="language" onClick={() => setLang(lang === "en" ? "ar" : "en")}> 
-          {lang === "en" ? "عربي" : "EN"}
-        </button>
-        <button className={open ? "menu active" : "menu"} onClick={() => setOpen(!open)} aria-label="Menu">
-          <i />
-          <i />
-        </button>
-      </div>
-    </header>
-  );
-}
-
 export default function Home() {
   const [lang, setLang] = useState("en");
-  const [open, setOpen] = useState(false);
-  const [videoReady, setVideoReady] = useState(false);
-  const videoRef = useRef(null);
-  const t = copy[lang];
-  const rtl = lang === "ar";
+  const t = COPY[lang];
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.play().catch(() => {});
+    const saved = localStorage.getItem("tr-lang");
+    if (saved === "ar" || saved === "en") setLang(saved);
   }, []);
 
-  return (
-    <main id="top" className={rtl ? "site rtl" : "site"} dir={rtl ? "rtl" : "ltr"}>
-      <Header lang={lang} setLang={setLang} open={open} setOpen={setOpen} t={t} />
+  const changeLang = (next) => {
+    setLang(next);
+    localStorage.setItem("tr-lang", next);
+  };
 
-      <section className="hero">
-        <video
-          ref={videoRef}
-          className={videoReady ? "heroVideo ready" : "heroVideo"}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          onCanPlay={() => setVideoReady(true)}
-          onLoadedData={() => setVideoReady(true)}
-        >
+  return (
+    <main dir={lang === "ar" ? "rtl" : "ltr"}>
+      <header className="nav">
+        <a className="brand" href="#top">
+          <span>TR</span>
+          <div><b>TURGUT RESERVE</b><small>PRIVATE LAND OFFERING</small></div>
+        </a>
+        <nav>
+          {t.nav.map((item, i) => (
+            <a key={item} href={["#property", "#vision", "#offering", "#contact"][i]}>{item}</a>
+          ))}
+        </nav>
+        <div className="language">
+          <button className={lang === "en" ? "active" : ""} onClick={() => changeLang("en")}>EN</button>
+          <i />
+          <button className={lang === "ar" ? "active" : ""} onClick={() => changeLang("ar")}>العربية</button>
+        </div>
+      </header>
+
+      <section className="hero" id="top">
+        <video autoPlay muted loop playsInline preload="metadata">
           <source src={VIDEO_URL} type="video/quicktime" />
         </video>
-        <div className="heroFallback" />
         <div className="heroOverlay" />
-
         <div className="heroContent">
-          <p className="kicker">{t.heroEyebrow}</p>
-          <h1>{t.heroTitle.split("\n").map((line) => <span key={line}>{line}</span>)}</h1>
-          <p className="heroText">{t.heroText}</p>
-          <a className="outlineButton" href="#contact">{t.heroCta}<span>↗</span></a>
+          <p>{t.eyebrow}</p>
+          <h1>{t.heroTitle}</h1>
+          <div className="heroBottom">
+            <span>{t.heroText}</span>
+            <a href="#contact">{t.heroCta} ↗</a>
+          </div>
         </div>
+        <div className="priceTag"><small>{t.priceLabel}</small><strong>{t.price}</strong></div>
+      </section>
 
-        <a className="discover" href="#property"><span>{t.discover}</span><i /></a>
+      <section className="intro" id="property">
+        <div>
+          <p className="kicker">{t.propertyKicker}</p>
+          <h2>{t.propertyTitle}</h2>
+        </div>
+        <p className="lead">{t.propertyText}</p>
       </section>
 
       <section className="facts">
         {t.facts.map(([value, label]) => (
-          <div className="fact" key={label}><strong>{value}</strong><span>{label}</span></div>
+          <div key={label}><strong>{value}</strong><span>{label}</span></div>
         ))}
       </section>
 
-      <section className="property section" id="property">
-        <div className="sectionIndex">01</div>
-        <div className="sectionHeading">
-          <p className="kicker dark">{t.propertyKicker}</p>
-          <h2>{t.propertyTitle}</h2>
-        </div>
-        <div className="sectionText">
-          <p>{t.propertyText}</p>
-          <ul>{t.propertyPoints.map((item) => <li key={item}>{item}</li>)}</ul>
-        </div>
+      <section className="mediaSection actual">
+        <div className="mediaHead"><span>{t.actualLabel}</span><p>{t.actualCaption}</p></div>
+        <figure className="fullImage lightFrame">
+          <img src="/property-drone.jpg" alt={t.actualLabel} />
+        </figure>
       </section>
 
-      <figure className="fullImage actualImage">
-        <img src="/property-drone.jpg" alt="Actual aerial view of the Turgut parcel" />
-        <figcaption>{t.imageLabel}</figcaption>
-      </figure>
-
-      <section className="opportunity" id="opportunity">
-        <div className="opportunityIntro">
-          <p className="kicker">{t.opportunityKicker}</p>
-          <h2>{t.opportunityTitle}</h2>
-          <p>{t.opportunityText}</p>
-        </div>
-        <div className="pillars">
-          {t.pillars.map(([number, title, text]) => (
-            <article key={number}>
-              <span>{number}</span>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </article>
-          ))}
-        </div>
+      <section className="visionIntro" id="vision">
+        <p className="kicker">{t.visionKicker}</p>
+        <h2>{t.visionTitle}</h2>
+        <p>{t.visionText}</p>
       </section>
 
-      <section className="visionIntro section" id="vision">
-        <div className="sectionIndex">02</div>
-        <div className="sectionHeading">
-          <p className="kicker dark">{t.visionKicker}</p>
-          <h2>{t.visionTitle}</h2>
-        </div>
-        <div className="sectionText">
-          <p>{t.visionText}</p>
-          <p className="note">{t.visionNote}</p>
-        </div>
+      <section className="editorialGallery">
+        <figure className="galleryLarge">
+          <img src="/master-vision.png" alt={t.planLabel} />
+          <figcaption>{t.planLabel}</figcaption>
+        </figure>
+        <figure>
+          <img src="/suite-concept.png" alt={t.suiteLabel} />
+          <figcaption>{t.suiteLabel}</figcaption>
+        </figure>
+        <figure>
+          <img src="/interior-atmosphere.png" alt={t.interiorLabel} />
+          <figcaption>{t.interiorLabel}</figcaption>
+        </figure>
       </section>
 
-      <figure className="fullImage planImage">
-        <img src="/master-vision.png" alt="Illustrative master vision" />
-      </figure>
-
-      <section className="atmosphereCopy">
-        <p className="kicker">{t.atmosphereKicker}</p>
-        <h2>{t.atmosphereTitle}</h2>
-        <p>{t.atmosphereText}</p>
+      <section className="service">
+        <p className="kicker">{t.serviceKicker}</p>
+        <h2>{t.serviceTitle}</h2>
+        <p>{t.serviceText}</p>
       </section>
 
-      <figure className="fullImage atmosphereImage">
-        <img src="/interior-atmosphere.png" alt="Illustrative interior atmosphere" />
-      </figure>
-
-      <section className="offering">
-        <div className="verticalLine" />
-        <p className="kicker">{t.offerKicker}</p>
-        <h2>{t.offerTitle}</h2>
-        <p>{t.offerText}</p>
-        <a href="#contact">{t.heroCta}<span>↗</span></a>
+      <section className="offering" id="offering">
+        <div>
+          <p className="kicker">{t.offeringKicker}</p>
+          <h2>{t.offeringTitle}</h2>
+          <p>{t.offeringText}</p>
+        </div>
+        <div className="offeringPrice">
+          <small>{t.priceLabel}</small>
+          <strong>{t.price}</strong>
+          <a href="#contact">{t.heroCta} ↗</a>
+        </div>
       </section>
 
       <section className="contact" id="contact">
-        <p className="kicker">{t.contactKicker}</p>
-        <h2>{t.contactTitle}</h2>
-        <p>{t.contactText}</p>
-        <a className="outlineButton" href="https://wa.me/" target="_blank" rel="noreferrer">
-          {t.contactButton}<span>↗</span>
-        </a>
-        <div className="contactMeta"><span>MARMARIS · TÜRKİYE</span><span>PRIVATE PRESENTATION</span></div>
+        <div>
+          <p className="kicker">PRIVATE ENQUIRY</p>
+          <h2>{t.contactTitle}</h2>
+          <p>{t.contactText}</p>
+        </div>
+        <div className="contactCard">
+          <span>{t.contactName}</span>
+          <a className="primary" href={WHATSAPP} target="_blank" rel="noreferrer">{t.whatsapp} ↗</a>
+          <a href="mailto:elvangokmenn@gmail.com">{t.email} ↗</a>
+          <small>+90 531 623 87 37<br/>elvangokmenn@gmail.com</small>
+        </div>
       </section>
 
       <footer>
-        <strong>TURGUT RESERVE</strong>
-        <p>{t.legal}</p>
+        <div className="brand footerBrand"><span>TR</span><div><b>TURGUT RESERVE</b><small>MARMARIS · TÜRKİYE</small></div></div>
+        <p>{t.disclaimer}</p>
         <span>© 2026</span>
       </footer>
     </main>
