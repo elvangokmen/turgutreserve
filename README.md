@@ -1,21 +1,17 @@
-# Turgut Reserve V5 — Video Only
+# Turgut Reserve V6 — Private Land Offering
 
-Bu sürümde video dışında hiçbir görsel kullanılmaz.
+Bu sürüm arazinin pazarlanmasına göre yeniden kurgulandı.
 
-## Özellikler
-- Orijinal MOV dosyası Vercel Blob URL'sinden doğrudan oynatılır.
-- Video kesilmez, dönüştürülmez, sıkıştırılmaz ve repository'ye eklenmez.
-- İngilizce ve Arapça dil geçişi vardır.
-- Fiyat: ₺50,000,000.
-- Ultra premium siyah, orman yeşili ve antik altın palet.
-- Mobil menü ve responsive tasarım.
-- Ek bağımlılık yoktur.
+## Kullanılan medya
+- Hero video: Vercel Blob üzerindeki orijinal `.mov` dosyası doğrudan kullanılır.
+- `property-drone.jpg`: gerçek arazi görüntüsü.
+- `master-vision.png`: konsept yerleşim vizyonu.
+- `interior-atmosphere.png`: konsept iç mekân atmosferi.
+
+Görseller yeniden boyutlandırılmadı, sıkıştırılmadı veya kırpılmadı. Sayfada normal `<img>` etiketi ile kendi oranlarında gösterilir.
 
 ## Kurulum
-Repository'deki mevcut dosyaların yerine bu paketteki `app` klasörü ile `package.json` dosyasını yükleyin. Vercel otomatik deploy başlatır.
+ZIP içindeki `app`, `public`, `package.json` ve `README.md` dosyalarını GitHub reposuna yükleyin.
 
 ## Önemli
-MOV videonun codec'i Safari tarafından desteklenip Chrome tarafından desteklenmeyebilir. Dosyanın kendisi değiştirilmediği için tarayıcı uyumluluğu kaynak codec'e bağlıdır. Bu sürüm kullanıcı talebi gereği yalnızca orijinal MOV URL'sini kullanır.
-
-## WhatsApp
-`app/page.js` içindeki `https://wa.me/` bağlantısına telefon numarası eklenmelidir. Örnek: `https://wa.me/905xxxxxxxxx`.
+WhatsApp bağlantısındaki `https://wa.me/` adresine yayın öncesinde telefon numarası eklenmelidir.
