@@ -1,236 +1,289 @@
-import {
-  CheckCircle2,
-  CircleDollarSign,
-  Layers3,
-  Leaf,
-  TrendingUp,
-  Users,
-} from "lucide-react";
+"use client";
 
-const highlights = [
-  {
-    title: "Fast-Track Cash Flow",
-    description:
-      "A low-impact hospitality model designed around temporary wooden platforms, potentially reducing dependency on conventional construction timelines.",
-    icon: CircleDollarSign,
-  },
-  {
-    title: "High Daily Yields",
-    description:
-      "Premium nightly rates positioned for high-end nature tourism, private retreats and international guests seeking exclusive experiences.",
-    icon: TrendingUp,
-  },
-  {
-    title: "Scalable Architecture",
-    description:
-      "A modular layout that allows the number of luxury suites and shared facilities to be expanded gradually in line with demand.",
-    icon: Layers3,
-  },
-  {
-    title: "Low-Impact Eco Concept",
-    description:
-      "Designed without conventional concrete foundations and developed around reversible, nature-sensitive construction principles.",
-    icon: Leaf,
-  },
-];
+import { useEffect, useState } from "react";
 
-const gallery = [
-  "/01_Gunduz_Genel_Proje_Gorunumu.png",
-  "/02_Giris_ve_Resepsiyon.png",
-  "/02_Resepsiyon_ve_Lounge_Ic_Mekan.png",
-  "/03_Ortak_Havuz_ve_Wellness.png",
-  "/03_Wellness_Ic_Mekan.png",
-  "/04_Ates_Cukuru_ve_Dinlenme_Alani.png",
-  "/04_Gunduz_Suit_ve_Ozel_Havuz.png",
-  "/05_Ozel_Havuzlu_Glamping_Suit.png",
-  "/06_Glamping_Suit_Ic_Mekan.png",
-  "/07_Glamping_Suit_Banyo.png",
-  "/08_Ozel_Veranda_ve_Havuz.png",
-  "/09_Doga_ve_Yuruyus_Yolu.png",
-  "/10_Yoga_ve_Wellness_Alani.png",
-];
+const VIDEO_URL =
+  "https://1wyaxdj8oaerosqy.public.blob.vercel-storage.com/MARMARIS%20TURGUT%20KO%CC%88YU%CC%88%20177%20ADA%201%20PARSEL%20.mov";
 
-export default function GlampingSection() {
+const WHATSAPP =
+  "https://wa.me/905316238737?text=Hello%2C%20I%20would%20like%20to%20receive%20the%20private%20presentation%20for%20Turgut%20Reserve.";
+
+const COPY = {
+  en: {
+    nav: ["Property", "Vision", "Offering", "Contact"],
+    eyebrow: "PRIVATE LAND OFFERING · MARMARIS, TÜRKİYE",
+    heroTitle: "Turgut Reserve",
+    heroText:
+      "A privately presented 2,761 m² landholding in Turgut, Marmaris, offered with an illustrative boutique hospitality vision.",
+    heroCta: "Request Private Presentation",
+    priceLabel: "ASKING PRICE",
+    price: "₺50,000,000",
+    propertyKicker: "THE PROPERTY",
+    propertyTitle: "A distinctive landholding between forest and coast.",
+    propertyText:
+      "The offering concerns the land itself. The outlined development imagery is presented separately as an illustrative vision intended to communicate one possible hospitality direction.",
+    facts: [
+      ["2,761 m²", "Parcel area"],
+      ["Approx. 300 m", "Coastal proximity"],
+      ["Asphalt road", "Direct access"],
+      ["Title documents", "Available upon request"],
+    ],
+    actualLabel: "ACTUAL PROPERTY VIEW",
+    actualCaption:
+      "Drone view with an indicative parcel outline. Boundary representation is for presentation purposes; official records remain authoritative.",
+    visionKicker: "ILLUSTRATIVE DEVELOPMENT VISION",
+    visionTitle: "A possible boutique nature-retreat direction.",
+    visionText:
+      "The following site-planning and interior studies demonstrate one possible hospitality direction. They do not represent an approved or completed development.",
+    conceptNote: "ILLUSTRATIVE CONCEPT · PRESENTATION PURPOSES ONLY",
+    masterTitle: "Master vision",
+    masterText: "A visual study shaped around the curved road frontage, pine forest setting and the natural character of the land.",
+    suitesTitle: "Suites & interiors",
+    suitesText: "Private-pool suite, veranda and interior atmosphere studies developed as part of the illustrative hospitality vision.",
+    wellnessTitle: "Wellness & shared spaces",
+    wellnessText: "Arrival, pool, wellness and outdoor gathering areas envisioned as one coherent nature-led guest experience.",
+    planLabel: "ILLUSTRATIVE SITE PLANNING STUDY",
+    suiteLabel: "ILLUSTRATIVE SUITE CONCEPT",
+    interiorLabel: "ILLUSTRATIVE INTERIOR ATMOSPHERE",
+    serviceKicker: "OPTIONAL PROJECT DELIVERY",
+    serviceTitle: "Design and implementation can be quoted separately.",
+    serviceText:
+      "Upon request, architectural development, detailed design and implementation services may be proposed under a separate commercial offer. Regulatory, planning and licensing processes remain subject to the relevant authorities and are not guaranteed as part of the land offering.",
+    offeringKicker: "PRIVATE OFFERING",
+    offeringTitle: "Acquire the land. Shape the vision.",
+    offeringText:
+      "Further title, location and technical information can be shared with qualified prospective buyers through a private presentation process.",
+    contactTitle: "Request the private presentation.",
+    contactText:
+      "For confidential details, documentation or a viewing appointment, contact Elvan Gökmen directly.",
+    whatsapp: "WhatsApp",
+    email: "Email",
+    contactName: "Elvan Gökmen",
+    disclaimer:
+      "All concept imagery is illustrative. Development potential, use, design, planning and implementation remain subject to due diligence and applicable official approvals.",
+  },
+  ar: {
+    nav: ["العقار", "الرؤية", "العرض", "التواصل"],
+    eyebrow: "عرض خاص لأرض · مرمريس، تركيا",
+    heroTitle: "Turgut Reserve",
+    heroText:
+      "أرض بمساحة 2,761 م² معروضة بشكل خاص في تورغوت، مرمريس، ومرفقة برؤية توضيحية لمشروع ضيافة بوتيكي.",
+    heroCta: "اطلب العرض الخاص",
+    priceLabel: "السعر المطلوب",
+    price: "₺50,000,000",
+    propertyKicker: "العقار",
+    propertyTitle: "أرض مميزة بين الغابة والساحل.",
+    propertyText:
+      "موضوع العرض هو الأرض نفسها. أما صور التطوير فتعرض بشكل منفصل كرؤية توضيحية لإبراز أحد الاتجاهات المحتملة لمشروع ضيافة.",
+    facts: [
+      ["2,761 م²", "مساحة الأرض"],
+      ["حوالي 300 م", "القرب من الساحل"],
+      ["طريق معبد", "وصول مباشر"],
+      ["وثائق الملكية", "متاحة عند الطلب"],
+    ],
+    actualLabel: "صورة فعلية للعقار",
+    actualCaption:
+      "صورة جوية مع تحديد إرشادي لحدود القطعة. يبقى المرجع الرسمي هو السجلات والوثائق المعتمدة.",
+    visionKicker: "رؤية تطوير توضيحية",
+    visionTitle: "تصور محتمل لوجهة بوتيكية وسط الطبيعة.",
+    visionText:
+      "تعرض الدراسات التالية تصوراً محتملاً لتخطيط الموقع والأجواء الداخلية، ولا تمثل مشروعاً معتمداً أو منفذاً.",
+    conceptNote: "تصور توضيحي · لأغراض العرض فقط",
+    masterTitle: "الرؤية العامة",
+    masterText: "دراسة بصرية تراعي انحناءة الطريق المحاذي وغابة الصنوبر والطابع الطبيعي للأرض.",
+    suitesTitle: "الأجنحة والتصميم الداخلي",
+    suitesText: "تصورات لأجنحة بمسابح خاصة وشرفات وأجواء داخلية ضمن رؤية الضيافة التوضيحية.",
+    wellnessTitle: "العافية والمساحات المشتركة",
+    wellnessText: "تصور متكامل لمنطقة الاستقبال والمسبح والعافية ومساحات التجمع الخارجية وسط الطبيعة.",
+    planLabel: "دراسة تخطيط موقع توضيحية",
+    suiteLabel: "تصور توضيحي للجناح",
+    interiorLabel: "أجواء داخلية توضيحية",
+    serviceKicker: "خدمات تنفيذ اختيارية",
+    serviceTitle: "يمكن تقديم عرض منفصل للتصميم والتنفيذ.",
+    serviceText:
+      "عند الطلب، يمكن تقديم خدمات التطوير المعماري والتصميم التفصيلي والتنفيذ ضمن عرض تجاري مستقل. وتبقى إجراءات التخطيط والتراخيص والموافقات خاضعة للجهات الرسمية المختصة ولا تشكل ضماناً ضمن عرض الأرض.",
+    offeringKicker: "عرض خاص",
+    offeringTitle: "امتلك الأرض وصِغ الرؤية.",
+    offeringText:
+      "يمكن مشاركة وثائق الملكية والموقع والمعلومات الفنية مع المشترين الجادين ضمن عرض خاص.",
+    contactTitle: "اطلب الملف الخاص بالعقار.",
+    contactText:
+      "للحصول على التفاصيل والوثائق أو ترتيب زيارة، تواصل مباشرة مع إلفان غوكمن.",
+    whatsapp: "واتساب",
+    email: "البريد الإلكتروني",
+    contactName: "إلفان غوكمن",
+    disclaimer:
+      "جميع الصور المفاهيمية توضيحية. تخضع إمكانات التطوير والاستخدام والتصميم والتنفيذ للدراسة والموافقات الرسمية المعمول بها.",
+  },
+};
+
+export default function Home() {
+  const [lang, setLang] = useState("en");
+  const t = COPY[lang];
+
+  useEffect(() => {
+    const saved = localStorage.getItem("tr-lang");
+    if (saved === "ar" || saved === "en") setLang(saved);
+  }, []);
+
+  const changeLang = (next) => {
+    setLang(next);
+    localStorage.setItem("tr-lang", next);
+  };
+
   return (
-    <section className="relative overflow-hidden bg-[#0b0f19] px-5 py-20 text-white sm:px-8 lg:px-12 lg:py-28">
-      <div className="pointer-events-none absolute -left-40 top-0 h-96 w-96 rounded-full bg-amber-500/10 blur-[140px]" />
-      <div className="pointer-events-none absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-amber-700/10 blur-[140px]" />
+    <main dir={lang === "ar" ? "rtl" : "ltr"}>
+      <header className="nav">
+        <a className="brand" href="#top">
+          <span>TR</span>
+          <div><b>TURGUT RESERVE</b><small>PRIVATE LAND OFFERING</small></div>
+        </a>
+        <nav>
+          {t.nav.map((item, i) => (
+            <a key={item} href={["#property", "#vision", "#offering", "#contact"][i]}>{item}</a>
+          ))}
+        </nav>
+        <div className="language">
+          <button className={lang === "en" ? "active" : ""} onClick={() => changeLang("en")}>EN</button>
+          <i />
+          <button className={lang === "ar" ? "active" : ""} onClick={() => changeLang("ar")}>العربية</button>
+        </div>
+      </header>
 
-      <div className="relative mx-auto max-w-7xl">
-        <header className="mb-14 max-w-4xl">
-          <div className="mb-5 flex items-center gap-3">
-            <span className="h-px w-10 bg-amber-400" />
-            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-400">
-              Illustrative Investment Concept
-            </span>
+      <section className="hero" id="top">
+        <video autoPlay muted loop playsInline preload="metadata">
+          <source src={VIDEO_URL} type="video/quicktime" />
+        </video>
+        <div className="heroOverlay" />
+        <div className="heroContent">
+          <p>{t.eyebrow}</p>
+          <h1>{t.heroTitle}</h1>
+          <div className="heroBottom">
+            <span>{t.heroText}</span>
+            <a href="#contact">{t.heroCta} ↗</a>
           </div>
+        </div>
+        <div className="priceTag"><small>{t.priceLabel}</small><strong>{t.price}</strong></div>
+      </section>
 
-          <h2 className="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Alternative High-Yield Model:
-            <span className="block text-amber-400">
-              Luxury Glamping Resort
-            </span>
-          </h2>
+      <section className="intro" id="property">
+        <div>
+          <p className="kicker">{t.propertyKicker}</p>
+          <h2>{t.propertyTitle}</h2>
+        </div>
+        <p className="lead">{t.propertyText}</p>
+      </section>
 
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg">
-            A flexible boutique hospitality vision designed to shorten
-            conventional development timelines and create foreign-currency
-            revenue potential through premium nature tourism.
-          </p>
-        </header>
+      <section className="facts">
+        {t.facts.map(([value, label]) => (
+          <div key={label}><strong>{value}</strong><span>{label}</span></div>
+        ))}
+      </section>
 
-        <div className="grid items-start gap-12 lg:grid-cols-2">
-          <div className="lg:sticky lg:top-8">
-            <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#111722] p-2 shadow-2xl shadow-black/40">
-              <div className="overflow-hidden rounded-xl">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/01_Gunduz_Genel_Proje_Gorunumu.png"
-                  alt="Illustrative luxury glamping resort master vision"
-                  className="h-auto w-full object-cover transition duration-700 ease-out group-hover:scale-[1.025]"
-                />
-              </div>
+      <section className="mediaSection actual">
+        <div className="mediaHead"><span>{t.actualLabel}</span><p>{t.actualCaption}</p></div>
+        <figure className="fullImage lightFrame">
+          <img src="/property-drone.jpg" alt={t.actualLabel} />
+        </figure>
+      </section>
 
-              <div className="absolute inset-x-5 bottom-5 z-10 flex items-end justify-between rounded-xl border border-white/10 bg-black/50 p-4 backdrop-blur-md">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-amber-400">
-                    Turgut Reserve
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-white">
-                    Concept Master Vision
-                  </p>
-                </div>
+      <section className="visionIntro" id="vision">
+        <p className="kicker">{t.visionKicker}</p>
+        <h2>{t.visionTitle}</h2>
+        <p>{t.visionText}</p>
+      </section>
 
-                <span className="hidden rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-[10px] uppercase tracking-wider text-amber-300 sm:block">
-                  Illustrative
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-4 grid grid-cols-2 gap-4">
-              {gallery.slice(0, 2).map((image, index) => (
-                <div
-                  key={image}
-                  className="group overflow-hidden rounded-xl border border-white/10 bg-[#111722] p-1.5"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={image}
-                    alt={`Luxury glamping concept visual ${index + 1}`}
-                    loading="lazy"
-                    className="h-auto w-full object-cover rounded-lg transition duration-500 group-hover:scale-[1.03]"
-                  />
-                </div>
-              ))}
-            </div>
+      <section className="conceptGallery" aria-label={t.visionKicker}>
+        <div className="conceptChapter">
+          <div className="chapterHead">
+            <div><span>01</span><h3>{t.masterTitle}</h3></div>
+            <p>{t.masterText}</p>
           </div>
-
-          <div className="rounded-2xl border border-white/10 bg-[#111722]/85 p-6 shadow-2xl shadow-black/20 backdrop-blur sm:p-8 lg:p-10">
-            <p className="text-base leading-relaxed text-slate-300">
-              The concept combines luxury private-pool suites, reception and
-              lounge facilities, shared wellness areas and curated outdoor
-              experiences. Its modular structure supports phased investment,
-              allowing the hospitality operation to grow in line with verified
-              market demand.
-            </p>
-
-            <div className="mt-9 space-y-7">
-              {highlights.map(({ title, description, icon: Icon }) => (
-                <div key={title} className="flex gap-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-amber-400/20 bg-amber-400/10 text-amber-400">
-                    <Icon className="h-5 w-5" strokeWidth={1.8} />
-                  </div>
-
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-white">{title}</h3>
-                      <CheckCircle2 className="h-4 w-4 text-amber-400" />
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-400">
-                      {description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10 rounded-2xl border border-amber-400/20 bg-gradient-to-br from-amber-400/10 to-transparent p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-amber-400">
-                Illustrative Financial Summary
-              </p>
-
-              <div className="mt-6 grid gap-5 sm:grid-cols-2">
-                <div className="rounded-xl border border-white/10 bg-black/20 p-4">
-                  <TrendingUp className="mb-4 h-5 w-5 text-amber-400" />
-                  <p className="text-xs uppercase tracking-wider text-slate-400">
-                    Estimated Amortization
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold text-white">
-                    2.5 Years
-                  </p>
-                </div>
-
-                <div className="rounded-xl border border-white/10 bg-black/20 p-4">
-                  <Users className="mb-4 h-5 w-5 text-amber-400" />
-                  <p className="text-xs uppercase tracking-wider text-slate-400">
-                    Target Audience
-                  </p>
-                  <p className="mt-2 text-lg font-semibold leading-snug text-white">
-                    High-Net-Worth Travelers
-                  </p>
-                </div>
-              </div>
-
-              <p className="mt-5 text-xs leading-relaxed text-slate-500">
-                Financial figures are preliminary concept estimates. Land use,
-                licensing, development, installation and operating assumptions
-                remain subject to professional feasibility studies, official
-                regulations and applicable approvals.
-              </p>
-            </div>
+          <div className="visualGrid masterGrid">
+            <ConceptVisual src="/concept/01_gunduz_genel_proje_gorunumu.webp" label={t.conceptNote} featured />
+            <ConceptVisual src="/concept/01_genel_proje_yerlesimi.webp" label={t.conceptNote} />
+            <ConceptVisual src="/concept/11_konsept_vaziyet_plani.webp" label={t.planLabel} light />
           </div>
         </div>
 
-        <div className="mt-16">
-          <div className="mb-6 flex items-end justify-between gap-6">
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-amber-400">
-                Concept Collection
-              </p>
-              <h3 className="mt-2 text-2xl font-semibold sm:text-3xl">
-                The complete guest experience
-              </h3>
-            </div>
-
-            <span className="hidden text-xs text-slate-500 sm:block">
-              Illustrative Concept / Presentation Only
-            </span>
+        <div className="conceptChapter">
+          <div className="chapterHead">
+            <div><span>02</span><h3>{t.suitesTitle}</h3></div>
+            <p>{t.suitesText}</p>
           </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {gallery.slice(2).map((image, index) => (
-              <figure
-                key={image}
-                className={`group overflow-hidden rounded-2xl border border-white/10 bg-[#111722] p-2 ${
-                  index === 0 || index === gallery.slice(2).length - 1
-                    ? "lg:col-span-2"
-                    : ""
-                }`}
-              >
-                <div className="overflow-hidden rounded-xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={image}
-                    alt={`Turgut Reserve illustrative concept ${index + 3}`}
-                    loading="lazy"
-                    className="h-auto w-full object-cover transition duration-700 ease-out group-hover:scale-[1.025]"
-                  />
-                </div>
-              </figure>
-            ))}
+          <div className="visualGrid suiteGrid">
+            <ConceptVisual src="/concept/04_gunduz_suit_ve_ozel_havuz.webp" label={t.suiteLabel} featured />
+            <ConceptVisual src="/concept/05_ozel_havuzlu_glamping_suit.webp" label={t.suiteLabel} />
+            <ConceptVisual src="/concept/08_ozel_veranda_ve_havuz.webp" label={t.suiteLabel} />
+            <ConceptVisual src="/concept/06_glamping_suit_ic_mekan.webp" label={t.interiorLabel} />
+            <ConceptVisual src="/concept/07_glamping_suit_banyo.webp" label={t.interiorLabel} />
           </div>
         </div>
-      </div>
-    </section>
+
+        <div className="conceptChapter">
+          <div className="chapterHead">
+            <div><span>03</span><h3>{t.wellnessTitle}</h3></div>
+            <p>{t.wellnessText}</p>
+          </div>
+          <div className="visualGrid wellnessGrid">
+            <ConceptVisual src="/concept/02_giris_ve_resepsiyon.webp" label={t.conceptNote} featured />
+            <ConceptVisual src="/concept/02_resepsiyon_ve_lounge_ic_mekan.webp" label={t.interiorLabel} />
+            <ConceptVisual src="/concept/03_ortak_havuz_ve_wellness.webp" label={t.conceptNote} />
+            <ConceptVisual src="/concept/03_wellness_ic_mekan.webp" label={t.interiorLabel} />
+            <ConceptVisual src="/concept/10_yoga_ve_wellness_alani.webp" label={t.conceptNote} />
+            <ConceptVisual src="/concept/09_doga_ve_yuruyus_yolu.webp" label={t.conceptNote} />
+            <ConceptVisual src="/concept/04_ates_cukuru_ve_dinlenme_alani.webp" label={t.conceptNote} featured />
+          </div>
+        </div>
+      </section>
+
+      <section className="service">
+        <p className="kicker">{t.serviceKicker}</p>
+        <h2>{t.serviceTitle}</h2>
+        <p>{t.serviceText}</p>
+      </section>
+
+      <section className="offering" id="offering">
+        <div>
+          <p className="kicker">{t.offeringKicker}</p>
+          <h2>{t.offeringTitle}</h2>
+          <p>{t.offeringText}</p>
+        </div>
+        <div className="offeringPrice">
+          <small>{t.priceLabel}</small>
+          <strong>{t.price}</strong>
+          <a href="#contact">{t.heroCta} ↗</a>
+        </div>
+      </section>
+
+      <section className="contact" id="contact">
+        <div>
+          <p className="kicker">PRIVATE ENQUIRY</p>
+          <h2>{t.contactTitle}</h2>
+          <p>{t.contactText}</p>
+        </div>
+        <div className="contactCard">
+          <span>{t.contactName}</span>
+          <a className="primary" href={WHATSAPP} target="_blank" rel="noreferrer">{t.whatsapp} ↗</a>
+          <a href="mailto:elvangokmenn@gmail.com">{t.email} ↗</a>
+          <small>+90 531 623 87 37<br/>elvangokmenn@gmail.com</small>
+        </div>
+      </section>
+
+      <footer>
+        <div className="brand footerBrand"><span>TR</span><div><b>TURGUT RESERVE</b><small>MARMARIS · TÜRKİYE</small></div></div>
+        <p>{t.disclaimer}</p>
+        <span>© 2026</span>
+      </footer>
+    </main>
+  );
+}
+
+function ConceptVisual({ src, label, featured = false, light = false }) {
+  return (
+    <figure className={`${featured ? "featured" : ""} ${light ? "lightVisual" : ""}`.trim()}>
+      <img src={src} alt={label} loading="lazy" decoding="async" />
+      <figcaption>{label}</figcaption>
+    </figure>
   );
 }
