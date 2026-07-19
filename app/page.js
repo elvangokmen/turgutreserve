@@ -34,7 +34,7 @@ const COPY = {
     visionKicker: "ILLUSTRATIVE DEVELOPMENT VISION",
     visionTitle: "A possible boutique nature-retreat direction.",
     visionText:
-      "The following studies demonstrate a potential design language and spatial approach. They do not represent an approved or completed development.",
+      "The following site-planning and interior studies demonstrate one possible hospitality direction. They do not represent an approved or completed development.",
     planLabel: "ILLUSTRATIVE SITE PLANNING STUDY",
     suiteLabel: "ILLUSTRATIVE SUITE CONCEPT",
     interiorLabel: "ILLUSTRATIVE INTERIOR ATMOSPHERE",
@@ -80,7 +80,7 @@ const COPY = {
     visionKicker: "رؤية تطوير توضيحية",
     visionTitle: "تصور محتمل لوجهة بوتيكية وسط الطبيعة.",
     visionText:
-      "تعرض الدراسات التالية لغة تصميم وتوزيعاً مكانياً محتملاً، ولا تمثل مشروعاً معتمداً أو منفذاً.",
+      "تعرض الدراسات التالية تصوراً محتملاً لتخطيط الموقع والأجواء الداخلية، ولا تمثل مشروعاً معتمداً أو منفذاً.",
     planLabel: "دراسة تخطيط موقع توضيحية",
     suiteLabel: "تصور توضيحي للجناح",
     interiorLabel: "أجواء داخلية توضيحية",
@@ -179,17 +179,22 @@ export default function Home() {
         <p>{t.visionText}</p>
       </section>
 
-      <section className="editorialGallery">
+      <section className="editorialGallery twoVisuals">
         <figure className="galleryLarge">
-          <img src="/master-vision.png" alt={t.planLabel} />
+          <img
+            src="/site-plan-final.png"
+            alt={t.planLabel}
+            loading="lazy"
+          />
           <figcaption>{t.planLabel}</figcaption>
         </figure>
-        <figure>
-          <img src="/suite-concept.png" alt={t.suiteLabel} />
-          <figcaption>{t.suiteLabel}</figcaption>
-        </figure>
-        <figure>
-          <img src="/interior-atmosphere.png" alt={t.interiorLabel} />
+
+        <figure className="galleryLarge">
+          <img
+            src="/interior-final.png"
+            alt={t.interiorLabel}
+            loading="lazy"
+          />
           <figcaption>{t.interiorLabel}</figcaption>
         </figure>
       </section>

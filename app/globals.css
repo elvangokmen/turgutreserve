@@ -12,3 +12,34 @@
 .contact{background:#101a13;color:white;padding:130px 7vw;display:grid;grid-template-columns:1fr .7fr;gap:10vw;align-items:center}.contact>div>p:last-child{color:#9da49f}.contactCard{border:1px solid rgba(199,167,106,.3);padding:38px;display:flex;flex-direction:column;gap:15px}.contactCard>span{font-family:"Cormorant Garamond";font-size:34px;margin-bottom:10px}.contactCard a{border:1px solid rgba(255,255,255,.2);padding:17px 18px;font-size:10px;letter-spacing:.15em;text-transform:uppercase}.contactCard a.primary{background:var(--gold);border-color:var(--gold);color:#111}.contactCard small{color:#9ca39d;font-size:10px;line-height:1.8;margin-top:8px}
 footer{background:#050805;color:#7d847e;padding:45px 5vw;display:grid;grid-template-columns:.5fr 1fr auto;gap:60px;align-items:center}.footerBrand{color:white}.footerBrand>span{width:34px;height:34px}.footerBrand b{font-size:10px}.footerBrand small{font-size:7px}footer p{font-size:8px;line-height:1.7;margin:0;max-width:800px}footer>span{font-size:9px}
 @media(max-width:900px){.nav{padding:20px 22px}.nav nav{display:none}.brand b{font-size:9px}.brand small{font-size:6px}.priceTag{right:22px;top:100px}.heroContent{padding:24vh 24px 55px}.hero h1{font-size:70px;line-height:.86;margin-bottom:38px}.heroBottom{display:block}.heroBottom a{display:inline-block;margin-top:25px}.intro,.offering,.contact{grid-template-columns:1fr;padding:90px 24px;gap:45px}.facts{grid-template-columns:1fr 1fr;margin:0 24px}.facts div:nth-child(2){border-right:0}.facts div:nth-child(-n+2){border-bottom:1px solid #cac2b5}.mediaSection{padding:70px 12px 90px}.mediaHead{grid-template-columns:1fr;margin:0 12px 22px}.fullImage{padding:7px}.visionIntro,.service{padding:90px 24px 65px}.editorialGallery{grid-template-columns:1fr;padding:0 12px 90px}.editorialGallery .galleryLarge{grid-column:auto}.offeringPrice{border-left:0;border-top:1px solid rgba(199,167,106,.35);padding:35px 0 0}.contactCard{padding:25px}footer{grid-template-columns:1fr;gap:28px;padding:40px 24px}}
+
+/* V8 final: exactly two user-supplied presentation visuals */
+.editorialGallery.twoVisuals{
+  grid-template-columns:1fr;
+  gap:28px;
+}
+.editorialGallery.twoVisuals .galleryLarge{
+  grid-column:auto;
+}
+.editorialGallery.twoVisuals figure{
+  background:#f3efe7;
+  padding:14px;
+}
+.editorialGallery.twoVisuals img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  background:#fff;
+}
+.editorialGallery.twoVisuals figcaption{
+  color:#c7a76a;
+  padding:16px 4px 8px;
+}
+@media(max-width:900px){
+  .editorialGallery.twoVisuals{
+    gap:16px;
+  }
+  .editorialGallery.twoVisuals figure{
+    padding:7px;
+  }
+}

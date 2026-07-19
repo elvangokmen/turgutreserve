@@ -1,14 +1,22 @@
-# Turgut Reserve V7 Final Marketing
+# Turgut Reserve V8 Final
 
-Final marketing build:
-- Original public Blob MOV video is used directly without editing, cutting or recompression.
-- One-page brochure/collage visual is intentionally excluded.
-- Actual property drone image and three selected illustrative concept visuals are included without cropping.
-- English and Arabic copy revised for natural investment terminology.
+This final package uses exactly the last two user-supplied presentation visuals:
+
+- `public/site-plan-final.png`
+- `public/interior-final.png`
+
+No new image was generated for the website package.
+
+Also included:
+- Original public Blob MOV hero video
+- Actual property drone visual
+- English / Arabic language switcher
 - WhatsApp: +90 531 623 87 37
 - Email: elvangokmenn@gmail.com
 - Contact: Elvan Gökmen
 - Asking price: ₺50,000,000
-- `node_modules` and `.next` are excluded.
+- Clear distinction between the land offering and illustrative development concepts
+- No `node_modules`
+- No `.next`
 
-Upload the contents of this folder to the GitHub repository. Vercel will install dependencies automatically.
+Upload the contents of this folder to GitHub. Vercel installs dependencies automatically.
