@@ -1,6 +1,6 @@
 {
-  "name": "turgutreserve",
-  "version": "2.0.0",
+  "name": "turgutreserve-v5-video-only",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "16.2.10",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "next": "14.2.31",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   }
 }
