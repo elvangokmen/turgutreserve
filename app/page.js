@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   CheckCircle2,
   CircleDollarSign,
@@ -83,14 +82,12 @@ export default function GlampingSection() {
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div className="lg:sticky lg:top-8">
             <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#111722] p-2 shadow-2xl shadow-black/40">
-              <div className="relative overflow-hidden rounded-xl h-[400px] w-full">
-                <Image
+              <div className="overflow-hidden rounded-xl">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/01_Gunduz_Genel_Proje_Gorunumu.png"
                   alt="Illustrative luxury glamping resort master vision"
-                  fill
-                  sizes="(max-w-7xl) 50vw, 100vw"
-                  className="object-cover transition duration-700 ease-out group-hover:scale-[1.025]"
-                  priority
+                  className="h-auto w-full object-cover transition duration-700 ease-out group-hover:scale-[1.025]"
                 />
               </div>
 
@@ -114,14 +111,14 @@ export default function GlampingSection() {
               {gallery.slice(0, 2).map((image, index) => (
                 <div
                   key={image}
-                  className="group relative overflow-hidden rounded-xl border border-white/10 bg-[#111722] p-1.5 h-32 w-full"
+                  className="group overflow-hidden rounded-xl border border-white/10 bg-[#111722] p-1.5"
                 >
-                  <Image
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={image}
                     alt={`Luxury glamping concept visual ${index + 1}`}
-                    fill
-                    sizes="(max-w-7xl) 25vw, 50vw"
-                    className="object-cover rounded-lg transition duration-500 group-hover:scale-[1.03]"
+                    loading="lazy"
+                    className="h-auto w-full object-cover rounded-lg transition duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
               ))}
@@ -214,19 +211,21 @@ export default function GlampingSection() {
             {gallery.slice(2).map((image, index) => (
               <figure
                 key={image}
-                className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-[#111722] p-2 h-72 w-full ${
+                className={`group overflow-hidden rounded-2xl border border-white/10 bg-[#111722] p-2 ${
                   index === 0 || index === gallery.slice(2).length - 1
                     ? "lg:col-span-2"
                     : ""
                 }`}
               >
-                <Image
-                  src={image}
-                  alt={`Turgut Reserve illustrative concept ${index + 3}`}
-                  fill
-                  sizes="(max-w-7xl) 33vw, 50vw"
-                  className="object-cover p-2 rounded-2xl transition duration-700 ease-out group-hover:scale-[1.025]"
-                />
+                <div className="overflow-hidden rounded-xl">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={image}
+                    alt={`Turgut Reserve illustrative concept ${index + 3}`}
+                    loading="lazy"
+                    className="h-auto w-full object-cover transition duration-700 ease-out group-hover:scale-[1.025]"
+                  />
+                </div>
               </figure>
             ))}
           </div>
