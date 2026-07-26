@@ -2,53 +2,40 @@
 
 import { useEffect, useState } from "react";
 
-const VIDEO_URL =
-  "https://1wyaxdj8oaerosqy.public.blob.vercel-storage.com/MARMARIS%20TURGUT%20KO%CC%88YU%CC%88%20177%20ADA%201%20PARSEL%20.mov";
-
 const WHATSAPP =
   "https://wa.me/905316238737?text=Hello%2C%20I%20would%20like%20to%20receive%20the%20private%20presentation%20for%20Turgut%20Reserve.";
 
 const COPY = {
   en: {
-    nav: ["Property", "Vision", "Offering", "Contact"],
+    nav: ["Property", "Concept Vision", "Offering", "Contact"],
     eyebrow: "PRIVATE LAND OFFERING · MARMARIS, TÜRKİYE",
     heroTitle: "Turgut Reserve",
     heroText:
       "A privately presented 2,761 m² landholding in Turgut, Marmaris, offered with an illustrative boutique hospitality vision.",
-    heroCta: "Request Private Presentation",
+    cta: "Request Private Presentation",
     priceLabel: "ASKING PRICE",
     price: "₺50,000,000",
     propertyKicker: "THE PROPERTY",
-    propertyTitle: "A distinctive landholding between forest and coast.",
+    propertyTitle: "A private landholding between forest and coast.",
     propertyText:
-      "The offering concerns the land itself. The outlined development imagery is presented separately as an illustrative vision intended to communicate one possible hospitality direction.",
+      "The offering concerns the land itself. The hospitality imagery below is an illustrative concept prepared to communicate one possible investment direction; it does not represent an approved or completed development.",
     facts: [
       ["2,761 m²", "Parcel area"],
       ["Approx. 300 m", "Coastal proximity"],
       ["Asphalt road", "Direct access"],
-      ["Title documents", "Available upon request"],
+      ["Marmaris", "Turgut, Türkiye"],
     ],
-    actualLabel: "ACTUAL PROPERTY VIEW",
-    actualCaption:
-      "Drone view with an indicative parcel outline. Boundary representation is for presentation purposes; official records remain authoritative.",
-    visionKicker: "ILLUSTRATIVE DEVELOPMENT VISION",
-    visionTitle: "A possible boutique nature-retreat direction.",
+    visionKicker: "ILLUSTRATIVE CONCEPT VISION",
+    visionTitle: "A boutique nature-retreat possibility.",
     visionText:
-      "The following site-planning and interior studies demonstrate one possible hospitality direction. They do not represent an approved or completed development.",
-    conceptNote: "ILLUSTRATIVE CONCEPT · PRESENTATION PURPOSES ONLY",
-    masterTitle: "Master vision",
-    masterText: "A visual study shaped around the curved road frontage, pine forest setting and the natural character of the land.",
-    suitesTitle: "Suites & interiors",
-    suitesText: "Private-pool suite, veranda and interior atmosphere studies developed as part of the illustrative hospitality vision.",
-    wellnessTitle: "Wellness & shared spaces",
-    wellnessText: "Arrival, pool, wellness and outdoor gathering areas envisioned as one coherent nature-led guest experience.",
-    planLabel: "ILLUSTRATIVE SITE PLANNING STUDY",
-    suiteLabel: "ILLUSTRATIVE SUITE CONCEPT",
-    interiorLabel: "ILLUSTRATIVE INTERIOR ATMOSPHERE",
-    serviceKicker: "OPTIONAL PROJECT DELIVERY",
-    serviceTitle: "Design and implementation can be quoted separately.",
-    serviceText:
-      "Upon request, architectural development, detailed design and implementation services may be proposed under a separate commercial offer. Regulatory, planning and licensing processes remain subject to the relevant authorities and are not guaranteed as part of the land offering.",
+      "A complete presentation study exploring arrival, private suites, shared wellness and landscape experiences within a coherent premium hospitality language.",
+    chapters: [
+      ["01", "Master vision", "An illustrative arrangement following the curved road frontage and the forest character of the setting."],
+      ["02", "Arrival & wellness", "Reception, lounge, shared pool and wellness spaces envisioned as a refined guest arrival experience."],
+      ["03", "Private suites", "Day and evening suite studies with private pools, verandas and warm contemporary interiors."],
+      ["04", "Nature experience", "Pedestrian paths, yoga and gathering areas designed around the surrounding pine landscape."],
+    ],
+    conceptLabel: "ILLUSTRATIVE CONCEPT · PRESENTATION PURPOSES ONLY",
     offeringKicker: "PRIVATE OFFERING",
     offeringTitle: "Acquire the land. Shape the vision.",
     offeringText:
@@ -58,50 +45,40 @@ const COPY = {
       "For confidential details, documentation or a viewing appointment, contact Elvan Gökmen directly.",
     whatsapp: "WhatsApp",
     email: "Email",
-    contactName: "Elvan Gökmen",
+    name: "Elvan Gökmen",
     disclaimer:
-      "All concept imagery is illustrative. Development potential, use, design, planning and implementation remain subject to due diligence and applicable official approvals.",
+      "All concept imagery is illustrative. Development potential, use, design, planning, licensing and implementation remain subject to professional due diligence and applicable official approvals.",
   },
   ar: {
-    nav: ["العقار", "الرؤية", "العرض", "التواصل"],
+    nav: ["العقار", "الرؤية التصورية", "العرض", "التواصل"],
     eyebrow: "عرض خاص لأرض · مرمريس، تركيا",
     heroTitle: "Turgut Reserve",
     heroText:
-      "أرض بمساحة 2,761 م² معروضة بشكل خاص في تورغوت، مرمريس، ومرفقة برؤية توضيحية لمشروع ضيافة بوتيكي.",
-    heroCta: "اطلب العرض الخاص",
+      "أرض خاصة بمساحة 2,761 م² في تورغوت، مرمريس، مع رؤية توضيحية لمشروع ضيافة بوتيكي.",
+    cta: "اطلب العرض الخاص",
     priceLabel: "السعر المطلوب",
     price: "₺50,000,000",
     propertyKicker: "العقار",
-    propertyTitle: "أرض مميزة بين الغابة والساحل.",
+    propertyTitle: "أرض خاصة بين الغابة والساحل.",
     propertyText:
-      "موضوع العرض هو الأرض نفسها. أما صور التطوير فتعرض بشكل منفصل كرؤية توضيحية لإبراز أحد الاتجاهات المحتملة لمشروع ضيافة.",
+      "موضوع العرض هو الأرض نفسها. أما صور الضيافة أدناه فهي تصور توضيحي لاتجاه استثماري محتمل، ولا تمثل مشروعاً معتمداً أو منفذاً.",
     facts: [
       ["2,761 م²", "مساحة الأرض"],
       ["حوالي 300 م", "القرب من الساحل"],
       ["طريق معبد", "وصول مباشر"],
-      ["وثائق الملكية", "متاحة عند الطلب"],
+      ["مرمريس", "تورغوت، تركيا"],
     ],
-    actualLabel: "صورة فعلية للعقار",
-    actualCaption:
-      "صورة جوية مع تحديد إرشادي لحدود القطعة. يبقى المرجع الرسمي هو السجلات والوثائق المعتمدة.",
-    visionKicker: "رؤية تطوير توضيحية",
-    visionTitle: "تصور محتمل لوجهة بوتيكية وسط الطبيعة.",
+    visionKicker: "رؤية تصورية توضيحية",
+    visionTitle: "إمكانية لوجهة بوتيكية وسط الطبيعة.",
     visionText:
-      "تعرض الدراسات التالية تصوراً محتملاً لتخطيط الموقع والأجواء الداخلية، ولا تمثل مشروعاً معتمداً أو منفذاً.",
-    conceptNote: "تصور توضيحي · لأغراض العرض فقط",
-    masterTitle: "الرؤية العامة",
-    masterText: "دراسة بصرية تراعي انحناءة الطريق المحاذي وغابة الصنوبر والطابع الطبيعي للأرض.",
-    suitesTitle: "الأجنحة والتصميم الداخلي",
-    suitesText: "تصورات لأجنحة بمسابح خاصة وشرفات وأجواء داخلية ضمن رؤية الضيافة التوضيحية.",
-    wellnessTitle: "العافية والمساحات المشتركة",
-    wellnessText: "تصور متكامل لمنطقة الاستقبال والمسبح والعافية ومساحات التجمع الخارجية وسط الطبيعة.",
-    planLabel: "دراسة تخطيط موقع توضيحية",
-    suiteLabel: "تصور توضيحي للجناح",
-    interiorLabel: "أجواء داخلية توضيحية",
-    serviceKicker: "خدمات تنفيذ اختيارية",
-    serviceTitle: "يمكن تقديم عرض منفصل للتصميم والتنفيذ.",
-    serviceText:
-      "عند الطلب، يمكن تقديم خدمات التطوير المعماري والتصميم التفصيلي والتنفيذ ضمن عرض تجاري مستقل. وتبقى إجراءات التخطيط والتراخيص والموافقات خاضعة للجهات الرسمية المختصة ولا تشكل ضماناً ضمن عرض الأرض.",
+      "دراسة عرض متكاملة تشمل الاستقبال والأجنحة الخاصة ومرافق العافية المشتركة وتجارب الطبيعة ضمن هوية ضيافة راقية.",
+    chapters: [
+      ["01", "الرؤية العامة", "توزيع توضيحي يتبع انحناءة الطريق ويحترم الطابع الطبيعي للغابة."],
+      ["02", "الاستقبال والعافية", "تصور راقٍ لمنطقة الاستقبال والصالة والمسبح المشترك ومرافق العافية."],
+      ["03", "الأجنحة الخاصة", "تصورات نهارية ومسائية للأجنحة مع مسابح خاصة وشرفات وتصاميم داخلية دافئة."],
+      ["04", "تجربة الطبيعة", "مسارات للمشي ومنصات لليوغا ومناطق تجمع منسجمة مع غابة الصنوبر."],
+    ],
+    conceptLabel: "تصور توضيحي · لأغراض العرض فقط",
     offeringKicker: "عرض خاص",
     offeringTitle: "امتلك الأرض وصِغ الرؤية.",
     offeringText:
@@ -111,11 +88,36 @@ const COPY = {
       "للحصول على التفاصيل والوثائق أو ترتيب زيارة، تواصل مباشرة مع إلفان غوكمن.",
     whatsapp: "واتساب",
     email: "البريد الإلكتروني",
-    contactName: "إلفان غوكمن",
+    name: "إلفان غوكمن",
     disclaimer:
-      "جميع الصور المفاهيمية توضيحية. تخضع إمكانات التطوير والاستخدام والتصميم والتنفيذ للدراسة والموافقات الرسمية المعمول بها.",
+      "جميع الصور المفاهيمية توضيحية. تخضع إمكانات التطوير والاستخدام والتصميم والتخطيط والتراخيص والتنفيذ للدراسة المهنية والموافقات الرسمية المعمول بها.",
   },
 };
+
+const GALLERIES = [
+  [
+    "/concept/01_gunduz_genel_proje_gorunumu.webp",
+    "/concept/01_genel_proje_yerlesimi.webp",
+  ],
+  [
+    "/concept/02_giris_ve_resepsiyon.webp",
+    "/concept/02_resepsiyon_ve_lounge_ic_mekan.webp",
+    "/concept/03_ortak_havuz_ve_wellness.webp",
+    "/concept/03_wellness_ic_mekan.webp",
+  ],
+  [
+    "/concept/04_gunduz_suit_ve_ozel_havuz.webp",
+    "/concept/05_ozel_havuzlu_glamping_suit.webp",
+    "/concept/08_ozel_veranda_ve_havuz.webp",
+    "/concept/06_glamping_suit_ic_mekan.webp",
+    "/concept/07_glamping_suit_banyo.webp",
+  ],
+  [
+    "/concept/09_doga_ve_yuruyus_yolu.webp",
+    "/concept/10_yoga_ve_wellness_alani.webp",
+    "/concept/04_ates_cukuru_ve_dinlenme_alani.webp",
+  ],
+];
 
 export default function Home() {
   const [lang, setLang] = useState("en");
@@ -123,13 +125,13 @@ export default function Home() {
 
   useEffect(() => {
     const saved = localStorage.getItem("tr-lang");
-    if (saved === "ar" || saved === "en") setLang(saved);
+    if (saved === "en" || saved === "ar") setLang(saved);
   }, []);
 
-  const changeLang = (next) => {
+  function changeLang(next) {
     setLang(next);
     localStorage.setItem("tr-lang", next);
-  };
+  }
 
   return (
     <main dir={lang === "ar" ? "rtl" : "ltr"}>
@@ -139,8 +141,8 @@ export default function Home() {
           <div><b>TURGUT RESERVE</b><small>PRIVATE LAND OFFERING</small></div>
         </a>
         <nav>
-          {t.nav.map((item, i) => (
-            <a key={item} href={["#property", "#vision", "#offering", "#contact"][i]}>{item}</a>
+          {t.nav.map((item, index) => (
+            <a key={item} href={["#property", "#vision", "#offering", "#contact"][index]}>{item}</a>
           ))}
         </nav>
         <div className="language">
@@ -151,139 +153,80 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top">
-        <video autoPlay muted loop playsInline preload="metadata">
-          <source src={VIDEO_URL} type="video/quicktime" />
+        <video autoPlay muted loop playsInline preload="metadata" poster="">
+          <source src="/hero.mp4" type="video/mp4" />
         </video>
-        <div className="heroOverlay" />
+        <div className="heroShade" />
         <div className="heroContent">
           <p>{t.eyebrow}</p>
           <h1>{t.heroTitle}</h1>
           <div className="heroBottom">
             <span>{t.heroText}</span>
-            <a href="#contact">{t.heroCta} ↗</a>
+            <a href="#contact">{t.cta} ↗</a>
           </div>
         </div>
         <div className="priceTag"><small>{t.priceLabel}</small><strong>{t.price}</strong></div>
       </section>
 
-      <section className="intro" id="property">
-        <div>
-          <p className="kicker">{t.propertyKicker}</p>
-          <h2>{t.propertyTitle}</h2>
+      <section className="property" id="property">
+        <div className="propertyIntro">
+          <div><p className="kicker">{t.propertyKicker}</p><h2>{t.propertyTitle}</h2></div>
+          <p>{t.propertyText}</p>
         </div>
-        <p className="lead">{t.propertyText}</p>
-      </section>
-
-      <section className="facts">
-        {t.facts.map(([value, label]) => (
-          <div key={label}><strong>{value}</strong><span>{label}</span></div>
-        ))}
-      </section>
-
-      <section className="mediaSection actual">
-        <div className="mediaHead"><span>{t.actualLabel}</span><p>{t.actualCaption}</p></div>
-        <figure className="fullImage lightFrame">
-          <img src="/property-drone.jpg" alt={t.actualLabel} />
-        </figure>
-      </section>
-
-      <section className="visionIntro" id="vision">
-        <p className="kicker">{t.visionKicker}</p>
-        <h2>{t.visionTitle}</h2>
-        <p>{t.visionText}</p>
-      </section>
-
-      <section className="conceptGallery" aria-label={t.visionKicker}>
-        <div className="conceptChapter">
-          <div className="chapterHead">
-            <div><span>01</span><h3>{t.masterTitle}</h3></div>
-            <p>{t.masterText}</p>
-          </div>
-          <div className="visualGrid masterGrid">
-            <ConceptVisual src="/concept/01_gunduz_genel_proje_gorunumu.webp" label={t.conceptNote} featured />
-            <ConceptVisual src="/concept/01_genel_proje_yerlesimi.webp" label={t.conceptNote} />
-            <ConceptVisual src="/concept/11_konsept_vaziyet_plani.webp" label={t.planLabel} light />
-          </div>
-        </div>
-
-        <div className="conceptChapter">
-          <div className="chapterHead">
-            <div><span>02</span><h3>{t.suitesTitle}</h3></div>
-            <p>{t.suitesText}</p>
-          </div>
-          <div className="visualGrid suiteGrid">
-            <ConceptVisual src="/concept/04_gunduz_suit_ve_ozel_havuz.webp" label={t.suiteLabel} featured />
-            <ConceptVisual src="/concept/05_ozel_havuzlu_glamping_suit.webp" label={t.suiteLabel} />
-            <ConceptVisual src="/concept/08_ozel_veranda_ve_havuz.webp" label={t.suiteLabel} />
-            <ConceptVisual src="/concept/06_glamping_suit_ic_mekan.webp" label={t.interiorLabel} />
-            <ConceptVisual src="/concept/07_glamping_suit_banyo.webp" label={t.interiorLabel} />
-          </div>
-        </div>
-
-        <div className="conceptChapter">
-          <div className="chapterHead">
-            <div><span>03</span><h3>{t.wellnessTitle}</h3></div>
-            <p>{t.wellnessText}</p>
-          </div>
-          <div className="visualGrid wellnessGrid">
-            <ConceptVisual src="/concept/02_giris_ve_resepsiyon.webp" label={t.conceptNote} featured />
-            <ConceptVisual src="/concept/02_resepsiyon_ve_lounge_ic_mekan.webp" label={t.interiorLabel} />
-            <ConceptVisual src="/concept/03_ortak_havuz_ve_wellness.webp" label={t.conceptNote} />
-            <ConceptVisual src="/concept/03_wellness_ic_mekan.webp" label={t.interiorLabel} />
-            <ConceptVisual src="/concept/10_yoga_ve_wellness_alani.webp" label={t.conceptNote} />
-            <ConceptVisual src="/concept/09_doga_ve_yuruyus_yolu.webp" label={t.conceptNote} />
-            <ConceptVisual src="/concept/04_ates_cukuru_ve_dinlenme_alani.webp" label={t.conceptNote} featured />
-          </div>
+        <div className="facts">
+          {t.facts.map(([value, label]) => (
+            <div key={label}><strong>{value}</strong><span>{label}</span></div>
+          ))}
         </div>
       </section>
 
-      <section className="service">
-        <p className="kicker">{t.serviceKicker}</p>
-        <h2>{t.serviceTitle}</h2>
-        <p>{t.serviceText}</p>
+      <section className="vision" id="vision">
+        <div className="visionIntro">
+          <p className="kicker">{t.visionKicker}</p>
+          <h2>{t.visionTitle}</h2>
+          <p>{t.visionText}</p>
+        </div>
+
+        {GALLERIES.map((images, chapterIndex) => {
+          const [number, title, text] = t.chapters[chapterIndex];
+          return (
+            <div className="chapter" key={number}>
+              <div className="chapterHead">
+                <div><span>{number}</span><h3>{title}</h3></div>
+                <p>{text}</p>
+              </div>
+              <div className={`gallery gallery${chapterIndex + 1}`}>
+                {images.map((src, imageIndex) => (
+                  <figure className={imageIndex === 0 ? "featured" : ""} key={src}>
+                    <img src={src} alt={`${title} — ${t.conceptLabel}`} loading="lazy" decoding="async" />
+                    <figcaption>{t.conceptLabel}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </section>
 
       <section className="offering" id="offering">
-        <div>
-          <p className="kicker">{t.offeringKicker}</p>
-          <h2>{t.offeringTitle}</h2>
-          <p>{t.offeringText}</p>
-        </div>
-        <div className="offeringPrice">
-          <small>{t.priceLabel}</small>
-          <strong>{t.price}</strong>
-          <a href="#contact">{t.heroCta} ↗</a>
-        </div>
+        <div><p className="kicker">{t.offeringKicker}</p><h2>{t.offeringTitle}</h2><p>{t.offeringText}</p></div>
+        <div className="offerPrice"><small>{t.priceLabel}</small><strong>{t.price}</strong><a href="#contact">{t.cta} ↗</a></div>
       </section>
 
       <section className="contact" id="contact">
-        <div>
-          <p className="kicker">PRIVATE ENQUIRY</p>
-          <h2>{t.contactTitle}</h2>
-          <p>{t.contactText}</p>
-        </div>
+        <div><p className="kicker">PRIVATE ENQUIRY</p><h2>{t.contactTitle}</h2><p>{t.contactText}</p></div>
         <div className="contactCard">
-          <span>{t.contactName}</span>
+          <span>{t.name}</span>
           <a className="primary" href={WHATSAPP} target="_blank" rel="noreferrer">{t.whatsapp} ↗</a>
           <a href="mailto:elvangokmenn@gmail.com">{t.email} ↗</a>
-          <small>+90 531 623 87 37<br/>elvangokmenn@gmail.com</small>
+          <small>+90 531 623 87 37<br />elvangokmenn@gmail.com</small>
         </div>
       </section>
 
       <footer>
-        <div className="brand footerBrand"><span>TR</span><div><b>TURGUT RESERVE</b><small>MARMARIS · TÜRKİYE</small></div></div>
-        <p>{t.disclaimer}</p>
-        <span>© 2026</span>
+        <div className="brand"><span>TR</span><div><b>TURGUT RESERVE</b><small>MARMARIS · TÜRKİYE</small></div></div>
+        <p>{t.disclaimer}</p><span>© 2026</span>
       </footer>
     </main>
-  );
-}
-
-function ConceptVisual({ src, label, featured = false, light = false }) {
-  return (
-    <figure className={`${featured ? "featured" : ""} ${light ? "lightVisual" : ""}`.trim()}>
-      <img src={src} alt={label} loading="lazy" decoding="async" />
-      <figcaption>{label}</figcaption>
-    </figure>
   );
 }

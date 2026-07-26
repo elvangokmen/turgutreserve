@@ -1,31 +1,20 @@
-# Turgut Reserve — GitHub Deployment Package
+# Turgut Reserve — Clean Final Package
 
-Production-ready Next.js website for the Turgut Reserve private land offering.
+This is the clean GitHub/Vercel deployment package.
 
-## GitHub / Vercel
+It contains only:
 
-1. Create a new GitHub repository.
+- `public/hero.mp4` — drone hero video
+- `public/concept/` — 14 new illustrative concept visuals
+- English and Arabic website content
+- Property facts, asking price and private enquiry section
+
+It does not contain any old parcel photographs, old concept images, `node_modules` or `.next` output.
+
+## Deploy
+
+1. Create a new, empty GitHub repository or delete all existing files in the current repository.
 2. Upload every file and folder from this package to the repository root.
-3. Import the repository into Vercel.
-4. Vercel will detect Next.js automatically; no custom build settings are required.
+3. Import the repository into Vercel, or allow the existing Vercel project to redeploy.
 
-Local commands:
-
-```bash
-npm install
-npm run dev
-```
-
-The concept renders are stored in `public/concept/`. They are optimized for web delivery and displayed without cropping. The site does not require Tailwind CSS, Lucide or any additional UI package.
-
-Included:
-
-- Original public Blob MOV hero video
-- Actual property drone visual
-- Complete glamping concept gallery
-- English / Arabic language switcher
-- WhatsApp and email contact links
-- Asking price: ₺50,000,000
-- Clear distinction between the land offering and illustrative development concepts
-- No `node_modules`
-- No `.next`
+Vercel will detect Next.js automatically. No Tailwind CSS, Lucide or other UI dependency is required.
