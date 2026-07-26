@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const WHATSAPP =
   "https://wa.me/905316238737?text=Hello%2C%20I%20would%20like%20to%20receive%20the%20Turgut%20Reserve%20land%20presentation.";
@@ -453,8 +453,16 @@ function ProjectSection({ id, project, images, tone }) {
 
 export default function Home() {
   const [lang, setLang] = useState("tr");
+  const heroVideo = useRef(null);
   const t = useMemo(() => copy[lang], [lang]);
   const dir = lang === "ar" ? "rtl" : "ltr";
+
+  useEffect(() => {
+    const video = heroVideo.current;
+    if (!video) return;
+    video.muted = true;
+    video.play().catch(() => {});
+  }, []);
 
   return (
     <main dir={dir} className={lang === "ar" ? "rtl" : ""}>
@@ -490,13 +498,15 @@ export default function Home() {
         </div>
         <div className="videoFrame">
           <video
+            ref={heroVideo}
             src="/media/hero.mp4"
             autoPlay
             muted
             loop
             playsInline
-            controls
-            preload="metadata"
+            preload="auto"
+            onCanPlay={(event) => event.currentTarget.play().catch(() => {})}
+            aria-label={t.videoLabel}
           />
           <span>{t.videoLabel}</span>
         </div>

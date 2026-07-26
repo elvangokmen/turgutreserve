@@ -142,11 +142,8 @@ nav a:hover {
 }
 
 .landIntro {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  align-items: end;
-  gap: 70px;
-  margin-bottom: 55px;
+  display: block;
+  margin-bottom: 34px;
 }
 
 .eyebrow,
@@ -183,14 +180,14 @@ nav a:hover {
 
 .landIntro h1 {
   margin: 20px 0 0;
-  max-width: 720px;
+  max-width: 1050px;
   font-size: clamp(48px, 6.2vw, 92px);
   line-height: .98;
 }
 
 .landIntro p {
-  margin: 0 0 8px;
-  max-width: 520px;
+  margin: 24px 0 0;
+  max-width: 760px;
   color: rgba(23,32,25,.72);
   font-size: 18px;
   line-height: 1.75;
