@@ -1,15 +1,19 @@
-# Turgut Reserve — Clean Final Package
+# Turgut Reserve — Dual Concept Website Package
 
-This is the clean GitHub/Vercel deployment package.
+This is the clean GitHub/Vercel deployment package with two separately presented
+development visions.
 
 It contains only:
 
 - `public/hero.mp4` — drone hero video
-- `public/concept/` — 14 new illustrative concept visuals
+- `public/concept/` — existing Glamping & Eco‑Retreat concept visuals
+- `public/villas/` — new Three Private Forest Villas concept visuals
 - English and Arabic website content
+- a two-concept selector and separate project galleries
+- a villa project-development and turnkey-construction enquiry call
 - Property facts, asking price and private enquiry section
 
-It does not contain any old parcel photographs, old concept images, `node_modules` or `.next` output.
+It does not contain old parcel photographs, `node_modules` or `.next` output.
 
 ## Deploy
 
