@@ -196,7 +196,6 @@ nav a:hover {
 .videoFrame {
   position: relative;
   width: min(1500px, calc(100% - 48px));
-  aspect-ratio: 21 / 9;
   margin-inline: auto;
   padding: 0;
   overflow: hidden;
@@ -206,10 +205,10 @@ nav a:hover {
 }
 
 .videoFrame video {
-  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
   object-position: center;
   background: #111812;
 }
@@ -784,7 +783,6 @@ footer {
 
   .videoFrame {
     width: 100%;
-    aspect-ratio: 16 / 9;
     border-radius: 0;
   }
 
