@@ -499,7 +499,7 @@ export default function Home() {
         <div className="videoFrame">
           <video
             ref={heroVideo}
-            src="/media/hero.mp4"
+            src="/media/turgut-drone-v3.mp4"
             autoPlay
             muted
             loop
